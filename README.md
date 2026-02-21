@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💒 Sito Matrimonio - Ines & Iacopo
 
-## Getting Started
+Sito web elegante per il matrimonio di Ines e Iacopo, il 26 settembre 2026.
 
-First, run the development server:
+## ✨ Funzionalità
+
+- 🏠 **Home Page** con i nomi degli sposi e la data
+- 💑 **Chi Siamo** - La vostra storia
+- ⛪ **Dettagli Matrimonio** - Cerimonia e ricevimento
+- 📝 **RSVP Form** - Formulario con integrazione Google Sheets
+- 🏝️ **Viaggio di Nozze** - Messico, Yucatán
+- 💰 **IBAN** - Per contributi al viaggio di nozze
+- ☀️ **Domenica a Trieste** - Consigli per gli ospiti
+- 📧 **Contatti** - Email sposi e wedding planner
+
+## 🎨 Design
+
+Palette colori elegante:
+- Bordeaux: `#712231`
+- Crema: `#EBE3D8`
+- Bianco: `#F8F8F8`
+- Argento (accenti)
+
+## 🚀 Quick Start
+
+### 1. Installa dipendenze
+
+```bash
+npm install
+```
+
+### 2. Configura Google Sheets
+
+Leggi la guida completa in [SETUP.md](./SETUP.md) per configurare:
+- Google Service Account
+- Google Sheet per RSVP
+- Variabili d'ambiente
+
+### 3. Avvia il server di sviluppo
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Apri [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4. Deploy su Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Commit e push su GitHub
+git add .
+git commit -m "Initial commit"
+git push
 
-## Learn More
+# Poi vai su vercel.com e importa il repository
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 📖 Documentazione Completa
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Vedi [SETUP.md](./SETUP.md) per:
+- Setup dettagliato Google Sheets
+- Configurazione dominio
+- Personalizzazione contenuti
+- Troubleshooting
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Tech Stack
 
-## Deploy on Vercel
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Database**: Google Sheets (RSVP)
+- **Hosting**: Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📅 Deadline RSVP
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+30 Giugno 2026
+
+---
+
+Fatto con ❤️ per Ines & Iacopo
