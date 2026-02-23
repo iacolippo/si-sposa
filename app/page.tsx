@@ -18,134 +18,122 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Section - Compact */}
-      <section id="home" className="min-h-[85vh] flex items-center justify-center bg-gradient-to-br from-crema via-white to-crema relative overflow-hidden pt-14">
-        {/* Decorative Elements */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-20 left-10 w-24 h-24 border border-bordeaux/20 rounded-full"></div>
-          <div className="absolute bottom-32 right-20 w-20 h-20 border border-bordeaux/20 rounded-full"></div>
-        </div>
+      {/* Hero Section - Two columns */}
+      <section id="home" className="min-h-[85vh] bg-gradient-to-br from-crema via-white to-crema relative overflow-hidden pt-14">
+        <div className="max-w-6xl mx-auto px-6 h-full min-h-[calc(85vh-3.5rem)] grid lg:grid-cols-2 gap-8 items-center">
 
-        <div className="text-center px-6 relative z-10">
-          {/* Small Ornament */}
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="w-8 h-px bg-gradient-to-r from-transparent to-bordeaux/50"></div>
-            <svg className="w-3 h-3 text-bordeaux/40" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M10 3.5L11.5 8h4.5l-3.5 2.5 1.5 4.5L10 12.5 6.5 15 8 10.5 4.5 8H9z"/>
-            </svg>
-            <div className="w-8 h-px bg-gradient-to-l from-transparent to-bordeaux/50"></div>
+          {/* Left: text + chi siamo */}
+          <div className="flex flex-col justify-center py-12 lg:py-0 order-2 lg:order-1">
+            <div className="flex items-center gap-2 mb-6">
+              <svg className="w-3 h-3 text-bordeaux/40" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 3.5L11.5 8h4.5l-3.5 2.5 1.5 4.5L10 12.5 6.5 15 8 10.5 4.5 8H9z"/>
+              </svg>
+              <div className="w-16 h-px bg-gradient-to-r from-bordeaux/50 to-transparent"></div>
+            </div>
+
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-bordeaux mb-3 tracking-tight">
+              Ines <span className="text-3xl md:text-4xl lg:text-5xl font-light mx-1">&</span> Iacopo
+            </h1>
+
+            <div className="flex items-center gap-3 my-5">
+              <div className="w-1 h-1 bg-bordeaux/40 rounded-full rotate-45"></div>
+              <div className="h-px w-16 bg-gradient-to-r from-bordeaux/40 to-transparent"></div>
+            </div>
+
+            <p className="text-xl md:text-2xl text-gray-700 mb-2 font-light">26 Settembre 2026</p>
+            <p className="text-sm text-gray-500 tracking-widest uppercase">Trieste · Capriva del Friuli</p>
+
+            <div className="mt-8 pt-8 border-t border-bordeaux/10 space-y-4">
+              <p className="text-base leading-relaxed text-gray-700">
+                Siamo Ines e Iacopo, e assieme a Sophie vi invitiamo a celebrare il nostro
+                amore in una giornata all'insegna della felicità.
+              </p>
+            </div>
           </div>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-bordeaux mb-3 tracking-tight">
-            Ines <span className="text-3xl md:text-4xl lg:text-5xl font-light mx-1">&</span> Iacopo
-          </h1>
-
-          <div className="flex items-center justify-center gap-3 my-5">
-            <div className="h-px w-16 bg-bordeaux/40"></div>
-            <div className="w-1 h-1 bg-bordeaux/40 rounded-full rotate-45"></div>
-            <div className="h-px w-16 bg-bordeaux/40"></div>
+          {/* Right: photo */}
+          <div className="relative h-[60vh] lg:h-[75vh] w-full rounded-sm overflow-hidden shadow-lg order-1 lg:order-2">
+            <Image
+              src="/images/sposi_e_sophie.jpg"
+              alt="Ines, Iacopo e Sophie"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              priority
+            />
           </div>
 
-          <p className="text-xl md:text-2xl text-gray-700 mb-2 font-light">26 Settembre 2026</p>
-          <p className="text-sm text-gray-500 tracking-widest uppercase">Trieste · Capriva del Friuli</p>
         </div>
       </section>
 
-      {/* Combined: Chi Siamo + Matrimonio Side by Side */}
-      <section id="about" className="py-12 bg-white">
+      {/* Il Matrimonio */}
+      <section className="py-12 bg-gradient-to-b from-crema/20 to-white">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="mb-8">
+            <h2 className="text-2xl md:text-3xl font-serif text-bordeaux mb-3">Il Matrimonio</h2>
+            <div className="w-12 h-px bg-bordeaux/30"></div>
+          </div>
 
-            {/* Chi Siamo - Left */}
-            <div>
-              <div className="mb-6">
-                <h2 className="text-2xl md:text-3xl font-serif text-bordeaux mb-3">Chi Siamo</h2>
-                <div className="w-12 h-px bg-bordeaux/30"></div>
-              </div>
-              <div className="space-y-4">
-                <p className="text-base leading-relaxed text-gray-700">
-                  Due anime che si sono incontrate, due cuori che battono all'unisono,
-                  due vite che diventano una. Siamo Ines e Iacopo, e siamo felicissimi
-                  di condividere con voi il giorno più importante della nostra vita.
-                </p>
-                <p className="text-sm leading-relaxed text-gray-600 italic border-l-2 border-bordeaux/20 pl-4">
-                  Dalla prima volta che ci siamo visti, abbiamo capito che eravamo fatti
-                  l'uno per l'altra. Ora, non vediamo l'ora di celebrare il nostro amore
-                  circondati dalle persone che più amiamo.
-                </p>
-              </div>
-            </div>
-
-            {/* Il Matrimonio - Right */}
-            <div>
-              <div className="mb-6">
-                <h2 className="text-2xl md:text-3xl font-serif text-bordeaux mb-3">Il Matrimonio</h2>
-                <div className="w-12 h-px bg-bordeaux/30"></div>
-              </div>
-
-              <div className="space-y-4">
-                {/* Ceremony */}
-                <div className="bg-gradient-to-br from-crema/30 to-white rounded-sm border border-crema/50 overflow-hidden">
-                  <div className="relative h-48 w-full">
-                    <Image
-                      src="/san-bartolomeo.jpg"
-                      alt="Chiesa di San Bartolomeo, Barcola"
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-bordeaux/60 to-transparent" />
-                    <div className="absolute bottom-3 left-4 text-white">
-                      <p className="font-serif text-base leading-tight">Chiesa di San Bartolomeo</p>
-                      <p className="text-xs opacity-80">Barcola, Trieste</p>
-                    </div>
-                  </div>
-                  <div className="p-4 flex items-start gap-3">
-                    <div className="text-2xl opacity-80">⛪</div>
-                    <div className="flex-1">
-                      <h3 className="text-base font-serif text-bordeaux mb-1">Cerimonia</h3>
-                      <div className="space-y-1.5 text-sm text-gray-700 mt-2">
-                        <div className="flex items-center gap-2">
-                          <span className="text-bordeaux/60 text-xs">🕒</span>
-                          <span className="font-medium">Ore 15:00</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+          <div className="grid lg:grid-cols-2 gap-6">
+            {/* Ceremony */}
+            <div className="bg-gradient-to-br from-crema/30 to-white rounded-sm border border-crema/50 overflow-hidden">
+              <div className="relative h-48 w-full">
+                <Image
+                  src="/images/San-Bartolomeo-2.jpg"
+                  alt="Chiesa di San Bartolomeo, Barcola"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-bordeaux/60 to-transparent" />
+                <div className="absolute bottom-3 left-4 text-white drop-shadow-lg">
+                  <p className="font-serif text-base leading-tight">Chiesa di San Bartolomeo</p>
+                  <p className="text-xs opacity-80">Barcola, Trieste</p>
                 </div>
-
-                {/* Reception */}
-                <div className="bg-gradient-to-br from-crema/30 to-white rounded-sm border border-crema/50 overflow-hidden">
-                  <div className="relative h-48 w-full">
-                    <Image
-                      src="/il-castello-di-spessa.jpg"
-                      alt="Castello di Spessa, Capriva del Friuli"
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-bordeaux/60 to-transparent" />
-                    <div className="absolute bottom-3 left-4 text-white">
-                      <p className="font-serif text-base leading-tight">Castello di Spessa</p>
-                      <p className="text-xs opacity-80">Capriva del Friuli (GO)</p>
-                    </div>
-                  </div>
-                  <div className="p-4 flex items-start gap-3">
-                    <div className="text-2xl opacity-80">🏰</div>
-                    <div className="flex-1">
-                      <h3 className="text-base font-serif text-bordeaux mb-1">Ricevimento</h3>
-                      <div className="space-y-1.5 text-sm text-gray-700 mt-2">
-                        <div className="flex items-center gap-2">
-                          <span className="text-bordeaux/60 text-xs">🕒</span>
-                          <span className="font-medium">A seguire la cerimonia</span>
-                        </div>
-                      </div>
+              </div>
+              <div className="p-4 flex items-start gap-3">
+                <div className="text-2xl opacity-80">⛪</div>
+                <div className="flex-1">
+                  <h3 className="text-base font-serif text-bordeaux mb-1">Cerimonia</h3>
+                  <div className="space-y-1.5 text-sm text-gray-700 mt-2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-bordeaux/60 text-xs">🕒</span>
+                      <span className="font-medium">Ore 15:00</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
+            {/* Reception */}
+            <div className="bg-gradient-to-br from-crema/30 to-white rounded-sm border border-crema/50 overflow-hidden">
+              <div className="relative h-48 w-full">
+                <Image
+                  src="/images/il-castello-di-spessa.jpg"
+                  alt="Castello di Spessa, Capriva del Friuli"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-bordeaux/60 to-transparent" />
+                <div className="absolute bottom-3 left-4 text-white drop-shadow-lg">
+                  <p className="font-serif text-base leading-tight">Castello di Spessa</p>
+                  <p className="text-xs opacity-80">Capriva del Friuli (GO)</p>
+                </div>
+              </div>
+              <div className="p-4 flex items-start gap-3">
+                <div className="text-2xl opacity-80">🏰</div>
+                <div className="flex-1">
+                  <h3 className="text-base font-serif text-bordeaux mb-1">Ricevimento</h3>
+                  <div className="space-y-1.5 text-sm text-gray-700 mt-2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-bordeaux/60 text-xs">🕒</span>
+                      <span className="font-medium">A seguire la cerimonia</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -182,22 +170,22 @@ export default function Home() {
                     <span className="text-bordeaux/60 mt-0.5">📍</span>
                     <div>
                       <p className="font-medium text-gray-800">Partenza</p>
-                      <p className="text-gray-600">— da definire —</p>
+                      <p className="text-gray-600">Piazzale di fronte alla Chiesa di San Bartolomeo a Barcola</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-bordeaux/60 mt-0.5">🕒</span>
                     <div>
                       <p className="font-medium text-gray-800">Orario andata</p>
-                      <p className="text-gray-600">— da definire —</p>
+                      <p className="text-gray-600">~ 17:00</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-bordeaux/60 mt-0.5">🌙</span>
                     <div>
                       <p className="font-medium text-gray-800">Orario ritorno</p>
-                      <p className="text-gray-600">Prima corsa: circa mezzanotte</p>
-                      <p className="text-gray-600">Seconda corsa: circa le 2:00</p>
+                      <p className="text-gray-600">Prima corsa: 00:00</p>
+                      <p className="text-gray-600">Seconda corsa: 2:00</p>
                     </div>
                   </div>
                 </div>
@@ -228,16 +216,27 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-6">
 
             {/* Viaggio Info - Left */}
-            <div className="bg-gradient-to-br from-crema/30 to-white p-8 rounded-sm border border-crema/50">
-              <div className="text-center mb-5">
-                <div className="text-4xl mb-3 opacity-90">🏝️</div>
-                <h3 className="text-xl font-serif text-bordeaux mb-2">Messico - Yucatán</h3>
-                <div className="w-10 h-px bg-bordeaux/20 mx-auto mb-4"></div>
+            <div className="bg-gradient-to-br from-crema/30 to-white rounded-sm border border-crema/50 overflow-hidden">
+              <div className="relative h-48 w-full">
+                <Image
+                  src="/images/yucatan.jpg"
+                  alt="Yucatán, Messico"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-bordeaux/60 to-transparent" />
+                <div className="absolute bottom-3 left-4 text-white drop-shadow-lg">
+                  <p className="font-serif text-base leading-tight">Messico - Yucatán</p>
+                  <p className="text-xs opacity-80">Il nostro viaggio di nozze</p>
+                </div>
               </div>
-              <p className="text-sm text-gray-700 leading-relaxed text-center">
-                Partiremo per un'avventura indimenticabile nella splendida penisola dello Yucatán,
-                tra spiagge paradisiache, rovine Maya e cenotes cristallini.
-              </p>
+              <div className="p-6 text-center">
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  Partiremo per un'avventura indimenticabile nella splendida penisola dello Yucatán,
+                  tra spiagge paradisiache, rovine Maya e cenotes cristallini.
+                </p>
+              </div>
             </div>
 
             {/* IBAN - Right */}
@@ -278,7 +277,7 @@ export default function Home() {
             <div className="text-center mb-6">
               <div className="text-4xl mb-4 opacity-90">☀️</div>
               <p className="text-lg md:text-xl font-serif text-bordeaux italic mb-2 leading-relaxed">
-                "La vita ghe me voglio<br/>e a Barcola su uno scoglio"
+                "La vita che voio<br/>xe a barcola su un scoio"
               </p>
               <div className="w-10 h-px bg-bordeaux/20 mx-auto mt-4"></div>
             </div>
@@ -286,8 +285,9 @@ export default function Home() {
             <div className="space-y-4">
               <p className="text-sm leading-relaxed text-gray-700 text-center">
                 Prima di ripartire, godetevi una giornata rilassante a Trieste.
-                Passeggiate lungo il molo, sedetevi su uno scoglio a Barcola, e lasciatevi
-                abbracciare dalla Bora e dal profumo del mare.
+                Passeggiate lungo il molo, sedetevi su uno scoglio a Barcola, 
+                godetevi un ottimo pranzo di pesce,e lasciatevi
+                abbracciare dal profumo del mare.
               </p>
 
               <div className="grid sm:grid-cols-2 gap-3 mt-6 pt-6 border-t border-gray-200/50">
@@ -352,7 +352,7 @@ export default function Home() {
               <p className="mb-2 text-sm opacity-90">Stefano Pilotto</p>
               <p className="text-sm">
                 <a href="mailto:stefano.pilotto@example.com" className="hover:text-crema transition-colors inline-block border-b border-white/20 hover:border-crema pb-0.5">
-                  stefano.pilotto@example.com
+                  stefano.pilotto@mib.edu
                 </a>
               </p>
             </div>
