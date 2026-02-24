@@ -31,8 +31,8 @@ export default function Home() {
               <div className="w-16 h-px bg-gradient-to-r from-bordeaux/50 to-transparent"></div>
             </div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-bordeaux mb-3 tracking-tight">
-              Ines <span className="text-3xl md:text-4xl lg:text-5xl font-light mx-1">&</span> Iacopo
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-script text-bordeaux mb-3">
+              Ines <span className="text-3xl md:text-4xl lg:text-5xl mx-1">&</span> Iacopo
             </h1>
 
             <div className="flex items-center gap-3 my-5">
@@ -85,10 +85,10 @@ export default function Home() {
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-bordeaux/60 to-transparent" />
-                <div className="absolute bottom-3 left-4 text-white drop-shadow-lg">
-                  <p className="font-serif text-base leading-tight">Chiesa di San Bartolomeo</p>
-                  <p className="text-xs opacity-80">Barcola, Trieste</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                <div className="absolute bottom-3 left-4 text-white [text-shadow:0_2px_8px_rgba(0,0,0,1),0_1px_3px_rgba(0,0,0,1)]">
+                  <p className="font-serif text-base leading-tight font-semibold">Chiesa di San Bartolomeo</p>
+                  <p className="text-xs">Barcola, Trieste</p>
                 </div>
               </div>
               <div className="p-4 flex items-start gap-3">
@@ -96,9 +96,18 @@ export default function Home() {
                 <div className="flex-1">
                   <h3 className="text-base font-serif text-bordeaux mb-1">Cerimonia</h3>
                   <div className="space-y-1.5 text-sm text-gray-700 mt-2">
-                    <div className="flex items-center gap-2">
-                      <span className="text-bordeaux/60 text-xs">🕒</span>
-                      <span className="font-medium">Ore 15:00</span>
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <span className="text-bordeaux/60 text-xs">🕒</span>
+                        <span className="font-medium">Ore 15:00</span>
+                      </div>
+                      <a
+                        href="https://maps.google.com/?q=Chiesa+di+San+Bartolomeo,+Barcola,+Trieste"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 font-medium text-gray-700 hover:text-bordeaux transition-colors"
+                        title="Apri in Google Maps"
+                      >Vedi su Maps 🗺️</a>
                     </div>
                   </div>
                 </div>
@@ -115,10 +124,10 @@ export default function Home() {
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-bordeaux/60 to-transparent" />
-                <div className="absolute bottom-3 left-4 text-white drop-shadow-lg">
-                  <p className="font-serif text-base leading-tight">Castello di Spessa</p>
-                  <p className="text-xs opacity-80">Capriva del Friuli (GO)</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                <div className="absolute bottom-3 left-4 text-white [text-shadow:0_2px_8px_rgba(0,0,0,1),0_1px_3px_rgba(0,0,0,1)]">
+                  <p className="font-serif text-base leading-tight font-semibold">Castello di Spessa</p>
+                  <p className="text-xs">Capriva del Friuli (GO)</p>
                 </div>
               </div>
               <div className="p-4 flex items-start gap-3">
@@ -126,9 +135,18 @@ export default function Home() {
                 <div className="flex-1">
                   <h3 className="text-base font-serif text-bordeaux mb-1">Ricevimento</h3>
                   <div className="space-y-1.5 text-sm text-gray-700 mt-2">
-                    <div className="flex items-center gap-2">
-                      <span className="text-bordeaux/60 text-xs">🕒</span>
-                      <span className="font-medium">A seguire la cerimonia</span>
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <span className="text-bordeaux/60 text-xs">🕒</span>
+                        <span className="font-medium">A seguire la cerimonia</span>
+                      </div>
+                      <a
+                        href="https://maps.google.com/?q=Castello+di+Spessa,+Capriva+del+Friuli"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 font-medium text-gray-700 hover:text-bordeaux transition-colors"
+                        title="Apri in Google Maps"
+                      >Vedi su Maps 🗺️</a>
                     </div>
                   </div>
                 </div>
@@ -225,10 +243,10 @@ export default function Home() {
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-bordeaux/60 to-transparent" />
-                <div className="absolute bottom-3 left-4 text-white drop-shadow-lg">
-                  <p className="font-serif text-base leading-tight">Messico - Yucatán</p>
-                  <p className="text-xs opacity-80">Il nostro viaggio di nozze</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                <div className="absolute bottom-3 left-4 text-white [text-shadow:0_2px_8px_rgba(0,0,0,1),0_1px_3px_rgba(0,0,0,1)]">
+                  <p className="font-serif text-base leading-tight font-semibold">Messico - Yucatán</p>
+                  <p className="text-xs">Il nostro viaggio di nozze</p>
                 </div>
               </div>
               <div className="p-6 text-center">
@@ -336,13 +354,13 @@ export default function Home() {
               <h3 className="text-lg font-serif mb-4">Gli Sposi</h3>
               <div className="space-y-2 text-sm">
                 <p>
-                  <a href="mailto:ines@example.com" className="hover:text-crema transition-colors inline-block border-b border-white/20 hover:border-crema pb-0.5">
-                    ines@example.com
+                  <a href="mailto:inespilotto94@gmail.com" className="hover:text-crema transition-colors inline-block border-b border-white/20 hover:border-crema pb-0.5">
+                    inespilotto94@gmail.com
                   </a>
                 </p>
                 <p>
-                  <a href="mailto:iacopo@example.com" className="hover:text-crema transition-colors inline-block border-b border-white/20 hover:border-crema pb-0.5">
-                    iacopo@example.com
+                  <a href="mailto:iacopo.poli93@gmail.com" className="hover:text-crema transition-colors inline-block border-b border-white/20 hover:border-crema pb-0.5">
+                    iacopo.poli93@gmail.com
                   </a>
                 </p>
               </div>
@@ -363,7 +381,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-4">
         <div className="text-center">
-          <p className="text-xs text-gray-400">© 2026 Ines & Iacopo · Con amore da Trieste</p>
+          <p className="text-xs text-gray-400">© 2026 Ines & Iacopo · Con amore da Parigi</p>
         </div>
       </footer>
     </div>

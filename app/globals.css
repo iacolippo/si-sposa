@@ -1,5 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
+
+@font-face {
+  font-family: 'Snell Roundhand';
+  src: local('Snell Roundhand'), local('SnellRoundhand');
+}
+
+@font-face {
+  font-family: 'Academy Engraved LET';
+  src: local('Academy Engraved LET'), local('AcademyEngravedLetPlain');
+}
+
+@font-face {
+  font-family: 'Adobe Caslon Pro';
+  src: local('Adobe Caslon Pro'), local('ACaslonPro-Regular');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Adobe Caslon Pro';
+  src: local('Adobe Caslon Pro Italic'), local('ACaslonPro-Italic');
+  font-weight: 400;
+  font-style: italic;
+}
 
 :root {
   --background: #F8F8F8;
@@ -17,8 +39,9 @@
   --color-crema: var(--crema);
   --color-white: var(--white);
   --color-argent: var(--argent);
-  --font-sans: 'Inter', var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Adobe Caslon Pro', Georgia, serif;
+  --font-serif: 'Academy Engraved LET', Georgia, serif;
+  --font-script: 'Snell Roundhand', cursive;
   --font-mono: var(--font-geist-mono);
 }
 
@@ -32,6 +55,10 @@ body {
 
 .font-serif {
   font-family: var(--font-serif);
+}
+
+.font-script {
+  font-family: var(--font-script);
 }
 
 * {
