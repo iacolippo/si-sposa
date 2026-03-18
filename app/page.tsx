@@ -10,6 +10,7 @@ export default function Home() {
           <div className="flex justify-center gap-6 text-xs font-medium tracking-wide uppercase">
             <a href="#home" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">Home</a>
             <a href="#about" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">Info</a>
+            <a href="#programma" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">Programma</a>
             <a href="#rsvp" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">RSVP</a>
             <a href="#honeymoon" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">Viaggio</a>
             <a href="#trieste" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">Trieste</a>
@@ -156,20 +157,48 @@ export default function Home() {
         </div>
       </section>
 
-      {/* RSVP Section */}
-      <section id="rsvp" className="py-12 bg-gradient-to-b from-crema/30 to-white">
-        <div className="max-w-5xl mx-auto px-6">
+      {/* Programma + Navetta Section */}
+      <section id="programma" className="py-12 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-serif text-bordeaux mb-3">RSVP</h2>
-            <div className="w-12 h-px bg-bordeaux/30 mx-auto mb-4"></div>
-            <p className="text-gray-600 text-sm">
-              Conferma la tua presenza entro il <strong className="text-bordeaux">30 Giugno 2026</strong>
-            </p>
+            <h2 className="text-2xl md:text-3xl font-serif text-bordeaux mb-3">Programma</h2>
+            <div className="w-12 h-px bg-bordeaux/30 mx-auto"></div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 items-start">
+          <div className="grid lg:grid-cols-2 gap-10 items-start">
 
-            {/* Navetta - Left */}
+            {/* Timeline - Left */}
+            <div className="relative">
+              <div className="absolute left-[5.5rem] top-0 bottom-0 w-px bg-bordeaux/15"></div>
+              <div className="space-y-6">
+                {[
+                  { time: '15:00', icon: '🚶', label: 'Arrivo degli invitati', sub: 'Chiesa di San Bartolomeo, Barcola' },
+                  { time: '15:15', icon: '⛪', label: 'Inizio cerimonia', sub: 'Rito religioso' },
+                  { time: '16:30', icon: '🎉', label: 'Uscita degli sposi', sub: 'Riso & coriandoli' },
+                  { time: '17:00', icon: '🚌', label: 'Partenza navetta', sub: 'Verso il Castello di Spessa' },
+                  { time: '17:30', icon: '🥂', label: 'Aperitivo', sub: 'Castello di Spessa, Capriva del Friuli' },
+                  { time: '20:00', icon: '🍽️', label: 'Cena', sub: 'Salone del castello' },
+                  { time: '22:00', icon: '🎶', label: 'Festa', sub: 'Musica & balli' },
+                ].map(({ time, icon, label, sub }) => (
+                  <div key={time} className="flex items-start gap-4">
+                    <div className="w-20 text-right shrink-0 pt-0.5">
+                      <span className="text-xs font-mono text-bordeaux/70 font-semibold">{time}</span>
+                    </div>
+                    <div className="relative flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-full bg-crema border border-bordeaux/20 flex items-center justify-center text-sm shrink-0 z-10">
+                        {icon}
+                      </div>
+                      <div className="pt-0.5">
+                        <p className="text-sm font-medium text-gray-800">{label}</p>
+                        <p className="text-xs text-gray-500 mt-0.5">{sub}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Navetta - Right */}
             <div className="bg-gradient-to-br from-crema/30 to-white p-8 rounded-sm border border-crema/50">
               <div className="flex items-center gap-2 mb-5">
                 <span className="text-2xl">🚌</span>
@@ -214,12 +243,21 @@ export default function Home() {
               </div>
             </div>
 
-            {/* RSVP Form - Right */}
-            <div>
-              <RSVPForm />
-            </div>
-
           </div>
+        </div>
+      </section>
+
+      {/* RSVP Section */}
+      <section id="rsvp" className="py-12 bg-gradient-to-b from-crema/30 to-white">
+        <div className="max-w-2xl mx-auto px-6">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl md:text-3xl font-serif text-bordeaux mb-3">RSVP</h2>
+            <div className="w-12 h-px bg-bordeaux/30 mx-auto mb-4"></div>
+            <p className="text-gray-600 text-sm">
+              Conferma la tua presenza entro il <strong className="text-bordeaux">30 Luglio 2026</strong>
+            </p>
+          </div>
+          <RSVPForm />
         </div>
       </section>
 
