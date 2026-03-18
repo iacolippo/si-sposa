@@ -65,6 +65,22 @@ body {
   scroll-behavior: smooth;
 }
 
+@keyframes scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-scroll {
+  display: flex;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+  will-change: transform;
+}
+
 /* Smooth scroll padding for fixed nav */
 html {
   scroll-padding-top: 60px;

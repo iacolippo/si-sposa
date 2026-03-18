@@ -7,7 +7,7 @@ export default function Home() {
       {/* Navigation - Compact */}
       <nav className="fixed top-0 left-0 right-0 bg-white/98 backdrop-blur-md shadow-sm z-50 border-b border-crema/50">
         <div className="max-w-6xl mx-auto px-4 py-2">
-          <div className="flex justify-center gap-6 text-xs font-medium tracking-wide uppercase">
+          <div className="flex justify-center gap-2 md:gap-6 text-[10px] md:text-xs font-medium tracking-wide uppercase flex-wrap">
             <a href="#home" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">Home</a>
             <a href="#about" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">Info</a>
             <a href="#programma" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">Programma</a>
@@ -21,11 +21,12 @@ export default function Home() {
 
       {/* Hero Section - Two columns */}
       <section id="home" className="min-h-[85vh] bg-gradient-to-br from-crema via-white to-crema relative overflow-hidden pt-14">
-        <div className="max-w-6xl mx-auto px-6 h-full min-h-[calc(85vh-3.5rem)] grid lg:grid-cols-2 gap-8 items-center">
+        <div className="max-w-6xl mx-auto px-6 h-full min-h-[calc(85vh-3.5rem)] grid lg:grid-cols-2 gap-0 lg:gap-0 items-center">
 
           {/* Left: text + chi siamo */}
-          <div className="flex flex-col justify-center py-12 lg:py-0 order-2 lg:order-1">
+          <div className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left py-0 order-2 lg:order-1">
             <div className="flex items-center gap-2 mb-6">
+              <div className="w-16 h-px bg-gradient-to-l from-bordeaux/50 to-transparent lg:hidden"></div>
               <svg className="w-3 h-3 text-bordeaux/40" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 3.5L11.5 8h4.5l-3.5 2.5 1.5 4.5L10 12.5 6.5 15 8 10.5 4.5 8H9z"/>
               </svg>
@@ -37,6 +38,7 @@ export default function Home() {
             </h1>
 
             <div className="flex items-center gap-3 my-5">
+              <div className="h-px w-16 bg-gradient-to-l from-bordeaux/40 to-transparent lg:hidden"></div>
               <div className="w-1 h-1 bg-bordeaux/40 rounded-full rotate-45"></div>
               <div className="h-px w-16 bg-gradient-to-r from-bordeaux/40 to-transparent"></div>
             </div>
@@ -46,20 +48,20 @@ export default function Home() {
 
             <div className="mt-8 pt-8 border-t border-bordeaux/10 space-y-4">
               <p className="text-base leading-relaxed text-gray-700">
-                Siamo Ines e Iacopo, e assieme a Sophie vi invitiamo a celebrare il nostro
-                amore in una giornata all'insegna della felicità.
+                Nel giorno in cui il nostro amore si fa promessa, desideriamo avervi accanto assieme alla nostra piccola Sophie.
               </p>
             </div>
           </div>
 
-          {/* Right: photo */}
-          <div className="relative h-[60vh] lg:h-[75vh] w-full rounded-sm overflow-hidden shadow-lg order-1 lg:order-2">
+          {/* Right: logo */}
+          <div className="flex items-center justify-center order-1 lg:order-2">
             <Image
-              src="/images/sposi_e_sophie.jpg"
-              alt="Ines, Iacopo e Sophie"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
+              src="/images/logo.svg"
+              alt="Logo"
+              width={1000}
+              height={1000}
+              className="w-full max-w-[1000px] scale-125 lg:scale-130"
+              style={{ filter: 'invert(12%) sepia(40%) saturate(2000%) hue-rotate(325deg) brightness(45%) contrast(120%)' }}
               priority
             />
           </div>
@@ -67,30 +69,75 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Photo Roll Carrousel */}
+      <section className="py-10 bg-gradient-to-b from-crema/40 to-crema/10 overflow-hidden">
+        <div className="relative">
+          {/* Film strip top edge */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-bordeaux/10"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-bordeaux/10"></div>
+
+          {/* Scrolling strip */}
+          <div className="flex animate-scroll hover:[animation-play-state:paused]">
+            {[
+              { src: '/images/carrousel/carrousel01.jpg', rotate: '-2deg' },
+              { src: '/images/carrousel/carrousel02.jpeg', rotate: '1.5deg' },
+              { src: '/images/carrousel/carrousel03.jpeg', rotate: '-1deg' },
+              { src: '/images/carrousel/carrousel04.jpeg', rotate: '2deg' },
+              { src: '/images/carrousel/carrousel05.jpeg', rotate: '-1.5deg' },
+              { src: '/images/carrousel/carrousel06.jpeg', rotate: '1deg' },
+              { src: '/images/carrousel/carrousel07.jpeg', rotate: '-2.5deg' },
+              { src: '/images/carrousel/carrousel08.jpeg', rotate: '1.8deg' },
+            ].concat([
+              { src: '/images/carrousel/carrousel01.jpg', rotate: '-2deg' },
+              { src: '/images/carrousel/carrousel02.jpeg', rotate: '1.5deg' },
+              { src: '/images/carrousel/carrousel03.jpeg', rotate: '-1deg' },
+              { src: '/images/carrousel/carrousel04.jpeg', rotate: '2deg' },
+              { src: '/images/carrousel/carrousel05.jpeg', rotate: '-1.5deg' },
+              { src: '/images/carrousel/carrousel06.jpeg', rotate: '1deg' },
+              { src: '/images/carrousel/carrousel07.jpeg', rotate: '-2.5deg' },
+              { src: '/images/carrousel/carrousel08.jpeg', rotate: '1.8deg' },
+            ]).map((photo, i) => (
+              <div
+                key={i}
+                className="shrink-0 mx-3 my-4"
+                style={{ transform: `rotate(${photo.rotate})` }}
+              >
+                <div className="bg-white p-2 pb-8 shadow-md hover:shadow-xl transition-shadow duration-300 rounded-sm">
+                  <div className="relative w-[70vw] md:w-[28vw] aspect-[3/4] overflow-hidden">
+                    <Image
+                      src={photo.src}
+                      alt=""
+                      fill
+                      className="object-cover hover:scale-105 transition-transform duration-500"
+                      sizes="224px"
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Il Matrimonio */}
-      <section className="py-12 bg-gradient-to-b from-crema/20 to-white">
+      <section id="about" className="py-12 bg-gradient-to-b from-crema/20 to-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-8">
             <h2 className="text-2xl md:text-3xl font-serif text-bordeaux mb-3">Il Matrimonio</h2>
             <div className="w-12 h-px bg-bordeaux/30"></div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-6">
+          <div className="grid lg:grid-cols-2 gap-20 max-w-3xl mx-auto">
             {/* Ceremony */}
             <div className="bg-gradient-to-br from-crema/30 to-white rounded-sm border border-crema/50 overflow-hidden">
-              <div className="relative h-48 w-full">
+              <div className="relative aspect-[3/4] w-full">
                 <Image
-                  src="/images/San-Bartolomeo-2.jpg"
+                  src="/images/chiesa-di-barcola.jpg"
                   alt="Chiesa di San Bartolomeo, Barcola"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                <div className="absolute bottom-3 left-4 text-white [text-shadow:0_2px_8px_rgba(0,0,0,1),0_1px_3px_rgba(0,0,0,1)]">
-                  <p className="font-serif text-base leading-tight font-semibold">Chiesa di San Bartolomeo</p>
-                  <p className="text-xs">Barcola, Trieste</p>
-                </div>
               </div>
               <div className="p-4 flex items-start gap-3">
                 <div className="text-2xl opacity-80">⛪</div>
@@ -117,19 +164,14 @@ export default function Home() {
 
             {/* Reception */}
             <div className="bg-gradient-to-br from-crema/30 to-white rounded-sm border border-crema/50 overflow-hidden">
-              <div className="relative h-48 w-full">
+              <div className="relative aspect-[3/4] w-full">
                 <Image
-                  src="/images/il-castello-di-spessa.jpg"
+                  src="/images/castello-di-spessa.jpeg"
                   alt="Castello di Spessa, Capriva del Friuli"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                <div className="absolute bottom-3 left-4 text-white [text-shadow:0_2px_8px_rgba(0,0,0,1),0_1px_3px_rgba(0,0,0,1)]">
-                  <p className="font-serif text-base leading-tight font-semibold">Castello di Spessa</p>
-                  <p className="text-xs">Capriva del Friuli (GO)</p>
-                </div>
               </div>
               <div className="p-4 flex items-start gap-3">
                 <div className="text-2xl opacity-80">🏰</div>
@@ -174,11 +216,11 @@ export default function Home() {
                 {[
                   { time: '15:00', icon: '🚶', label: 'Arrivo degli invitati', sub: 'Chiesa di San Bartolomeo, Barcola' },
                   { time: '15:15', icon: '⛪', label: 'Inizio cerimonia', sub: 'Rito religioso' },
-                  { time: '16:30', icon: '🎉', label: 'Uscita degli sposi', sub: 'Riso & coriandoli' },
                   { time: '17:00', icon: '🚌', label: 'Partenza navetta', sub: 'Verso il Castello di Spessa' },
-                  { time: '17:30', icon: '🥂', label: 'Aperitivo', sub: 'Castello di Spessa, Capriva del Friuli' },
+                  { time: '17:45', icon: '🥂', label: 'Aperitivo', sub: 'Giardino del castello' },
+                  { time: '18:00', icon: '💍', label: 'Arrivo degli sposi', sub: 'Finalmente marito e moglie!' },
                   { time: '20:00', icon: '🍽️', label: 'Cena', sub: 'Salone del castello' },
-                  { time: '22:00', icon: '🎶', label: 'Festa', sub: 'Musica & balli' },
+                  { time: '23:00', icon: '🎶', label: 'Festa', sub: 'Musica & balli' },
                 ].map(({ time, icon, label, sub }) => (
                   <div key={time} className="flex items-start gap-4">
                     <div className="w-20 text-right shrink-0 pt-0.5">
@@ -248,13 +290,18 @@ export default function Home() {
       </section>
 
       {/* RSVP Section */}
-      <section id="rsvp" className="py-12 bg-gradient-to-b from-crema/30 to-white">
-        <div className="max-w-2xl mx-auto px-6">
+      <section id="rsvp" className="pt-32 pb-12 md:py-20 bg-gradient-to-br from-bordeaux to-bordeaux/90 text-white relative overflow-hidden">
+        {/* Corner ornaments */}
+        <Image src="/images/corner.png" alt="" width={500} height={500} className="absolute top-0 left-0 pointer-events-none" style={{ filter: 'invert(1) brightness(100)', opacity: 0.8 }} />
+        <Image src="/images/corner.png" alt="" width={500} height={500} className="absolute top-0 right-0 -scale-x-100 pointer-events-none" style={{ filter: 'invert(1) brightness(100)', opacity: 0.8 }} />
+        <Image src="/images/corner.png" alt="" width={500} height={500} className="hidden md:block absolute bottom-0 left-0 -scale-y-100 pointer-events-none" style={{ filter: 'invert(1) brightness(100)', opacity: 0.8 }} />
+        <Image src="/images/corner.png" alt="" width={500} height={500} className="hidden md:block absolute bottom-0 right-0 -scale-x-100 -scale-y-100 pointer-events-none" style={{ filter: 'invert(1) brightness(100)', opacity: 0.8 }} />
+        <div className="max-w-2xl mx-auto px-6 relative z-10">
           <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-serif text-bordeaux mb-3">RSVP</h2>
-            <div className="w-12 h-px bg-bordeaux/30 mx-auto mb-4"></div>
-            <p className="text-gray-600 text-sm">
-              Conferma la tua presenza entro il <strong className="text-bordeaux">30 Luglio 2026</strong>
+            <h2 className="text-4xl md:text-5xl font-serif text-crema mb-3">RSVP</h2>
+            <div className="w-12 h-px bg-white/40 mx-auto mb-4"></div>
+            <p className="text-white/80 text-sm">
+              Conferma la tua presenza entro il <strong className="text-crema">30 Luglio 2026</strong>
             </p>
           </div>
           <RSVPForm />
@@ -273,7 +320,7 @@ export default function Home() {
 
             {/* Viaggio Info - Left */}
             <div className="bg-gradient-to-br from-crema/30 to-white rounded-sm border border-crema/50 overflow-hidden">
-              <div className="relative h-48 w-full">
+              <div className="relative h-86 w-full">
                 <Image
                   src="/images/yucatan.jpg"
                   alt="Yucatán, Messico"
@@ -304,13 +351,24 @@ export default function Home() {
                 Il regalo più grande è la vostra presenza, ma se desiderate contribuire
                 al nostro viaggio di nozze:
               </p>
-              <div className="bg-white p-5 rounded-sm border border-bordeaux/10">
-                <p className="font-mono text-xs text-gray-800 text-center break-all mb-1">
-                  <strong className="text-bordeaux text-sm">IBAN</strong><br/>
-                  <span className="text-sm">IT00X0000000000000000000000</span>
+              <div className="bg-white p-5 rounded-sm border border-bordeaux/10 space-y-3">
+                <p className="font-mono text-xs text-gray-800 text-center break-all">
+                  <strong className="text-bordeaux text-sm">Beneficiario</strong><br/>
+                  <span className="text-sm">Iacopo Poli & Ines Pilotto</span>
                 </p>
-                <p className="text-xs text-gray-500 text-center mt-2">
-                  Intestato a: Ines e Iacopo
+                <p className="font-mono text-xs text-gray-800 text-center break-all">
+                  <strong className="text-bordeaux text-sm">IBAN</strong><br/>
+                  <span className="text-sm">FR76 2823 3000 0144 8058 6060 520</span>
+                </p>
+                <p className="font-mono text-xs text-gray-800 text-center break-all">
+                  <strong className="text-bordeaux text-sm">BIC/SWIFT</strong><br/>
+                  <span className="text-sm">REVOFRP2</span>
+                </p>
+                <p className="text-xs text-gray-500 text-center">
+                  Revolut Bank UAB · 10 avenue Kléber, 75116, Paris
+                </p>
+                <p className="text-xs text-gray-500 text-center">
+                  BIC banca corrispondente: CHASDEFX
                 </p>
               </div>
             </div>

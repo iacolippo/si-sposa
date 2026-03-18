@@ -51,10 +51,10 @@ export default function RSVPForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-crema/40 p-6 rounded-sm border border-crema shadow-sm">
+    <form onSubmit={handleSubmit} className="bg-white/10 p-6 rounded-sm border border-white/20 shadow-sm">
       {/* Name Field */}
       <div className="mb-4">
-        <label htmlFor="name" className="block text-xs font-medium text-gray-800 mb-1.5 tracking-wide">
+        <label htmlFor="name" className="block text-xs font-medium text-white mb-1.5 tracking-wide">
           Nome e Cognome *
         </label>
         <input
@@ -71,7 +71,7 @@ export default function RSVPForm() {
 
       {/* Allergies Field */}
       <div className="mb-4">
-        <label htmlFor="allergies" className="block text-xs font-medium text-gray-800 mb-1.5 tracking-wide">
+        <label htmlFor="allergies" className="block text-xs font-medium text-white mb-1.5 tracking-wide">
           Intolleranze o Restrizioni Alimentari
         </label>
         <input
@@ -87,7 +87,7 @@ export default function RSVPForm() {
 
       {/* Shuttle Service Field */}
       <div className="mb-4">
-        <label htmlFor="shuttle" className="block text-xs font-medium text-gray-800 mb-1.5 tracking-wide">
+        <label htmlFor="shuttle" className="block text-xs font-medium text-white mb-1.5 tracking-wide">
           Desideri usare il servizio navetta? *
         </label>
         <select
@@ -106,7 +106,7 @@ export default function RSVPForm() {
 
       {/* Notes Field */}
       <div className="mb-5">
-        <label htmlFor="notes" className="block text-xs font-medium text-gray-800 mb-1.5 tracking-wide">
+        <label htmlFor="notes" className="block text-xs font-medium text-white mb-1.5 tracking-wide">
           Note
         </label>
         <textarea
@@ -124,7 +124,7 @@ export default function RSVPForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-bordeaux text-white py-2.5 px-6 rounded-sm font-medium text-sm tracking-wide hover:bg-bordeaux/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow"
+        className="w-full bg-crema text-bordeaux py-2.5 px-6 rounded-sm font-medium text-sm tracking-wide hover:bg-white transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow"
       >
         {isSubmitting ? 'Invio in corso...' : 'Invia RSVP'}
       </button>
