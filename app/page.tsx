@@ -202,45 +202,57 @@ export default function Home() {
       {/* Programma + Navetta Section */}
       <section id="programma" className="py-12 bg-white">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-serif text-bordeaux mb-3">Programma</h2>
-            <div className="w-12 h-px bg-bordeaux/30 mx-auto"></div>
-          </div>
-
           <div className="grid lg:grid-cols-2 gap-10 items-start">
 
-            {/* Timeline - Left */}
+            {/* Timeline inside cornice */}
             <div className="relative">
-              <div className="absolute left-[5.5rem] top-0 bottom-0 w-px bg-bordeaux/15"></div>
-              <div className="space-y-6">
-                {[
-                  { time: '15:00', icon: '🚶', label: 'Arrivo degli invitati', sub: 'Chiesa di San Bartolomeo, Barcola' },
-                  { time: '15:15', icon: '⛪', label: 'Inizio cerimonia', sub: 'Rito religioso' },
-                  { time: '17:00', icon: '🚌', label: 'Partenza navetta', sub: 'Verso il Castello di Spessa' },
-                  { time: '17:45', icon: '🥂', label: 'Aperitivo', sub: 'Giardino del castello' },
-                  { time: '18:00', icon: '💍', label: 'Arrivo degli sposi', sub: 'Finalmente marito e moglie!' },
-                  { time: '20:00', icon: '🍽️', label: 'Cena', sub: 'Salone del castello' },
-                  { time: '23:00', icon: '🎶', label: 'Festa', sub: 'Musica & balli' },
-                ].map(({ time, icon, label, sub }) => (
-                  <div key={time} className="flex items-start gap-4">
-                    <div className="w-20 text-right shrink-0 pt-0.5">
-                      <span className="text-xs font-mono text-bordeaux/70 font-semibold">{time}</span>
-                    </div>
-                    <div className="relative flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-full bg-crema border border-bordeaux/20 flex items-center justify-center text-sm shrink-0 z-10">
-                        {icon}
+              {/* Frame image - sets the container size via natural aspect ratio */}
+              <img
+                src="/images/CORNICE.png"
+                alt=""
+                className="w-full h-auto block pointer-events-none"
+                style={{ filter: 'invert(12%) sepia(40%) saturate(2000%) hue-rotate(325deg) brightness(45%) contrast(120%)' }}
+              />
+              {/* Content positioned inside the frame */}
+              <div className="absolute top-[18%] bottom-[16%] left-[20%] right-[20%] flex flex-col items-center justify-start overflow-hidden">
+                <div className="text-center mb-2">
+                  <h2 className="text-xl md:text-2xl font-serif text-bordeaux mb-1">Programma</h2>
+                  <div className="w-10 h-px bg-bordeaux/30 mx-auto"></div>
+                </div>
+
+                <div className="relative w-full">
+                  <div className="absolute left-[3rem] top-0 bottom-0 w-px bg-bordeaux/15"></div>
+                  <div className="space-y-3.5">
+                    {[
+                      { time: '15:00', icon: '🚶', label: 'Arrivo degli invitati', sub: 'Chiesa di San Bartolomeo, Barcola' },
+                      { time: '15:15', icon: '⛪', label: 'Inizio cerimonia', sub: 'Rito religioso' },
+                      { time: '17:00', icon: '🚌', label: 'Partenza navetta', sub: 'Verso il Castello di Spessa' },
+                      { time: '17:45', icon: '🥂', label: 'Aperitivo', sub: 'Giardino del castello' },
+                      { time: '18:00', icon: '💍', label: 'Arrivo degli sposi', sub: 'Finalmente marito e moglie!' },
+                      { time: '20:00', icon: '🍽️', label: 'Cena', sub: 'Salone del castello' },
+                      { time: '23:00', icon: '🎶', label: 'Festa', sub: 'Musica & balli' },
+                    ].map(({ time, icon, label, sub }) => (
+                      <div key={time} className="flex items-center gap-1.5">
+                        <div className="w-10 text-right shrink-0">
+                          <span className="text-[10px] font-mono text-bordeaux/70 font-semibold">{time}</span>
+                        </div>
+                        <div className="relative flex items-center gap-1.5">
+                          <div className="w-5 h-5 rounded-full bg-crema border border-bordeaux/20 flex items-center justify-center text-[10px] shrink-0 z-10">
+                            {icon}
+                          </div>
+                          <div>
+                            <p className="text-xs font-medium text-gray-800 leading-tight">{label}</p>
+                            <p className="text-[10px] text-gray-500 leading-tight">{sub}</p>
+                          </div>
+                        </div>
                       </div>
-                      <div className="pt-0.5">
-                        <p className="text-sm font-medium text-gray-800">{label}</p>
-                        <p className="text-xs text-gray-500 mt-0.5">{sub}</p>
-                      </div>
-                    </div>
+                    ))}
                   </div>
-                ))}
+                </div>
               </div>
             </div>
 
-            {/* Navetta - Right */}
+            {/* Navetta - Right (no cornice) */}
             <div className="bg-gradient-to-br from-crema/30 to-white p-8 rounded-sm border border-crema/50">
               <div className="flex items-center gap-2 mb-5">
                 <span className="text-2xl">🚌</span>
