@@ -210,7 +210,7 @@ export default function Home() {
                 src="/images/CORNICE.svg"
                 alt=""
                 className="w-full h-auto block pointer-events-none"
-                style={{ filter: 'invert(12%) sepia(40%) saturate(2000%) hue-rotate(325deg) brightness(45%) contrast(120%)' }}
+                style={{ filter: 'brightness(0) saturate(100%) invert(14%) sepia(53%) saturate(2083%) hue-rotate(327deg) brightness(82%) contrast(96%)' }}
               />
               {/* Content positioned inside the frame */}
               <div className="absolute top-[18%] bottom-[16%] left-[20%] right-[20%] flex flex-col items-center justify-start overflow-hidden">
@@ -303,10 +303,10 @@ export default function Home() {
       {/* RSVP Section */}
       <section id="rsvp" className="pt-32 pb-12 md:py-20 bg-gradient-to-br from-bordeaux to-bordeaux/90 text-white relative overflow-hidden">
         {/* Corner ornaments */}
-        <Image src="/images/CORIC3.svg" alt="" width={400} height={400} className="absolute -top-24 -left-6 pointer-events-none" style={{ filter: 'invert(1) brightness(100)', opacity: 0.8 }} />
-        <Image src="/images/CORIC3.svg" alt="" width={400} height={400} className="absolute -top-24 -right-6 -scale-x-100 pointer-events-none" style={{ filter: 'invert(1) brightness(100)', opacity: 0.8 }} />
-        <Image src="/images/CORIC3.svg" alt="" width={400} height={400} className="hidden md:block absolute bottom-0 -left-6 -scale-y-100 pointer-events-none" style={{ filter: 'invert(1) brightness(100)', opacity: 0.8 }} />
-        <Image src="/images/CORIC3.svg" alt="" width={400} height={400} className="hidden md:block absolute bottom-0 -right-6 -scale-x-100 -scale-y-100 pointer-events-none" style={{ filter: 'invert(1) brightness(100)', opacity: 0.8 }} />
+        <Image src="/images/CORIC3.svg" alt="" width={400} height={400} className="absolute -top-24 -left-6 pointer-events-none" style={{ filter: 'invert(1)', opacity: 0.8 }} />
+        <Image src="/images/CORIC3.svg" alt="" width={400} height={400} className="absolute -top-24 -right-6 -scale-x-100 pointer-events-none" style={{ filter: 'invert(1)', opacity: 0.8 }} />
+        <Image src="/images/CORIC3.svg" alt="" width={400} height={400} className="hidden md:block absolute bottom-0 -left-6 -scale-y-100 pointer-events-none" style={{ filter: 'invert(1)', opacity: 0.8 }} />
+        <Image src="/images/CORIC3.svg" alt="" width={400} height={400} className="hidden md:block absolute bottom-0 -right-6 -scale-x-100 -scale-y-100 pointer-events-none" style={{ filter: 'invert(1)', opacity: 0.8 }} />
         <div className="max-w-2xl mx-auto px-6 relative z-10">
           <div className="text-center mb-8">
             <h2 className="text-4xl md:text-5xl font-serif text-crema mb-3">RSVP</h2>
