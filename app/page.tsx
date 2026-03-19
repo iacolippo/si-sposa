@@ -204,7 +204,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-10 items-start">
 
             {/* Timeline inside cornice */}
-            <div className="relative">
+            <div className="relative max-w-md mx-auto">
               {/* Frame image - sets the container size via natural aspect ratio */}
               <img
                 src="/images/CORNICE.svg"
@@ -213,15 +213,16 @@ export default function Home() {
                 style={{ filter: 'brightness(0) saturate(100%) invert(14%) sepia(53%) saturate(2083%) hue-rotate(327deg) brightness(82%) contrast(96%)' }}
               />
               {/* Content positioned inside the frame */}
-              <div className="absolute top-[18%] bottom-[16%] left-[20%] right-[20%] flex flex-col items-center justify-start overflow-hidden">
-                <div className="text-center mb-2">
-                  <h2 className="text-xl md:text-2xl font-serif text-bordeaux mb-1">Programma</h2>
+              <div className="absolute top-[12%] bottom-[10%] left-[14%] right-[14%] flex flex-col items-center justify-center overflow-hidden text-[clamp(8px,2.5vw,16px)]">
+                <div className="text-center mb-[0.5em]">
+                  <h2 className="text-[1.8em] font-serif text-bordeaux mb-[0.2em]">Programma</h2>
                   <div className="w-10 h-px bg-bordeaux/30 mx-auto"></div>
                 </div>
 
-                <div className="relative w-full">
-                  <div className="absolute left-[3rem] top-0 bottom-0 w-px bg-bordeaux/15"></div>
-                  <div className="space-y-3.5">
+                <div className="relative w-full flex justify-center">
+                  <div className="relative">
+                  <div className="absolute left-[4.05em] top-0 bottom-0 w-px bg-bordeaux/15"></div>
+                  <div className="space-y-[0.8em]">
                     {[
                       { time: '15:00', icon: '🚶', label: 'Arrivo degli invitati', sub: 'Chiesa di San Bartolomeo, Barcola' },
                       { time: '15:15', icon: '⛪', label: 'Inizio cerimonia', sub: 'Rito religioso' },
@@ -231,21 +232,22 @@ export default function Home() {
                       { time: '20:00', icon: '🍽️', label: 'Cena', sub: 'Salone del castello' },
                       { time: '23:00', icon: '🎶', label: 'Festa', sub: 'Musica & balli' },
                     ].map(({ time, icon, label, sub }) => (
-                      <div key={time} className="flex items-center gap-1.5">
-                        <div className="w-10 text-right shrink-0">
-                          <span className="text-[10px] font-mono text-bordeaux/70 font-semibold">{time}</span>
+                      <div key={time} className="flex items-center gap-[0.3em]">
+                        <div className="w-[3em] text-right shrink-0">
+                          <span className="text-[0.8em] font-mono text-bordeaux/70 font-semibold">{time}</span>
                         </div>
-                        <div className="relative flex items-center gap-1.5">
-                          <div className="w-5 h-5 rounded-full bg-crema border border-bordeaux/20 flex items-center justify-center text-[10px] shrink-0 z-10">
+                        <div className="relative flex items-center gap-[0.3em]">
+                          <div className="w-[1.5em] h-[1.5em] rounded-full bg-crema border border-bordeaux/20 flex items-center justify-center text-[0.8em] shrink-0 z-10">
                             {icon}
                           </div>
                           <div>
-                            <p className="text-xs font-medium text-gray-800 leading-tight">{label}</p>
-                            <p className="text-[10px] text-gray-500 leading-tight">{sub}</p>
+                            <p className="text-[1em] font-medium text-gray-800 leading-tight">{label}</p>
+                            <p className="text-[0.8em] text-gray-500 leading-tight">{sub}</p>
                           </div>
                         </div>
                       </div>
                     ))}
+                  </div>
                   </div>
                 </div>
               </div>
