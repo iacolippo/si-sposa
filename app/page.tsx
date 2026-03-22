@@ -253,48 +253,69 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Navetta - Right (no cornice) */}
-            <div className="bg-gradient-to-br from-crema/30 to-white p-8 rounded-sm border border-crema/50">
-              <div className="flex items-center gap-2 mb-5">
-                <span className="text-2xl">🚌</span>
-                <h3 className="text-xl font-serif text-bordeaux">Servizio Navetta</h3>
-              </div>
-              <div className="w-10 h-px bg-bordeaux/20 mb-5"></div>
-
-              <div className="space-y-4 text-sm text-gray-700">
-                <p className="leading-relaxed">
-                  Per agevolare gli spostamenti, organizziamo un servizio navetta
-                  da Trieste fino al Castello di Spessa e ritorno.
-                </p>
-
-                <div className="space-y-3 pt-2">
-                  <div className="flex items-start gap-3">
-                    <span className="text-bordeaux/60 mt-0.5">📍</span>
-                    <div>
-                      <p className="font-medium text-gray-800">Partenza</p>
-                      <p className="text-gray-600">Piazzale di fronte alla Chiesa di San Bartolomeo a Barcola</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-bordeaux/60 mt-0.5">🕒</span>
-                    <div>
-                      <p className="font-medium text-gray-800">Orario andata</p>
-                      <p className="text-gray-600">~ 17:00</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-bordeaux/60 mt-0.5">🌙</span>
-                    <div>
-                      <p className="font-medium text-gray-800">Orario ritorno</p>
-                      <p className="text-gray-600">Prima corsa: 00:00</p>
-                      <p className="text-gray-600">Ultima corsa: ~2:00 (fine ricevimento)</p>
-                    </div>
-                  </div>
+            {/* Right column: Navetta + Alloggio */}
+            <div className="space-y-6">
+              {/* Navetta */}
+              <div className="bg-gradient-to-br from-crema/30 to-white p-8 rounded-sm border border-crema/50">
+                <div className="flex items-center gap-2 mb-5">
+                  <span className="text-2xl">🚌</span>
+                  <h3 className="text-xl font-serif text-bordeaux">Servizio Navetta</h3>
                 </div>
+                <div className="w-10 h-px bg-bordeaux/20 mb-5"></div>
 
-                <p className="text-xs text-gray-500 italic pt-2 border-t border-gray-100">
-                  Se hai bisogno della navetta, seleziona &quot;Sì&quot; nel form RSVP.
-                </p>
+                <div className="space-y-4 text-sm text-gray-700">
+                  <p className="leading-relaxed">
+                    Per agevolare gli spostamenti, organizziamo un servizio navetta
+                    da Trieste fino al Castello di Spessa e ritorno.
+                  </p>
+
+                  <div className="space-y-3 pt-2">
+                    <div className="flex items-start gap-3">
+                      <span className="text-bordeaux/60 mt-0.5">📍</span>
+                      <div>
+                        <p className="font-medium text-gray-800">Partenza</p>
+                        <p className="text-gray-600">Piazzale di fronte alla Chiesa di San Bartolomeo a Barcola</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <span className="text-bordeaux/60 mt-0.5">🕒</span>
+                      <div>
+                        <p className="font-medium text-gray-800">Orario andata</p>
+                        <p className="text-gray-600">~ 17:00</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <span className="text-bordeaux/60 mt-0.5">🌙</span>
+                      <div>
+                        <p className="font-medium text-gray-800">Orario ritorno</p>
+                        <p className="text-gray-600">Prima corsa: 00:00</p>
+                        <p className="text-gray-600">Ultima corsa: ~2:00 (fine ricevimento)</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-gray-500 italic pt-2 border-t border-gray-100">
+                    Se hai bisogno della navetta, seleziona &quot;Sì&quot; nel form RSVP.
+                  </p>
+                </div>
+              </div>
+
+              {/* Alloggio */}
+              <div className="bg-gradient-to-br from-crema/30 to-white p-8 rounded-sm border border-crema/50">
+                <div className="flex items-center gap-2 mb-5">
+                  <span className="text-2xl">🏨</span>
+                  <h3 className="text-xl font-serif text-bordeaux">Dove Dormire</h3>
+                </div>
+                <div className="w-10 h-px bg-bordeaux/20 mb-5"></div>
+
+                <div className="space-y-4 text-sm text-gray-700">
+                  <p className="leading-relaxed">
+                    Ci piacerebbe occuparci del vostro alloggio per la notte del matrimonio.
+                  </p>
+                  <p className="leading-relaxed">
+                    Se avete esigenze particolari, non esitate a <a href="#contacts" className="text-bordeaux underline underline-offset-2 hover:text-bordeaux/70 transition-colors font-medium">contattarci</a>.
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -303,10 +324,10 @@ export default function Home() {
       </section>
 
       {/* RSVP Section */}
-      <section id="rsvp" className="pt-32 pb-12 md:py-20 bg-gradient-to-br from-bordeaux to-bordeaux/90 text-white relative overflow-hidden">
+      <section id="rsvp" className="pt-16 pb-12 md:py-20 bg-gradient-to-br from-bordeaux to-bordeaux/90 text-white relative overflow-hidden">
         {/* Corner ornaments */}
-        <Image src="/images/CORIC3.svg" alt="" width={400} height={400} className="absolute -top-24 -left-6 w-[200px] md:w-[400px] pointer-events-none" style={{ filter: 'invert(1)', opacity: 0.8 }} />
-        <Image src="/images/CORIC3.svg" alt="" width={400} height={400} className="absolute -top-24 -right-6 w-[200px] md:w-[400px] -scale-x-100 pointer-events-none" style={{ filter: 'invert(1)', opacity: 0.8 }} />
+        <Image src="/images/CORIC3.svg" alt="" width={400} height={400} className="absolute -top-12 -left-6 w-[200px] md:w-[400px] pointer-events-none" style={{ filter: 'invert(1)', opacity: 0.8 }} />
+        <Image src="/images/CORIC3.svg" alt="" width={400} height={400} className="absolute -top-12 -right-6 w-[200px] md:w-[400px] -scale-x-100 pointer-events-none" style={{ filter: 'invert(1)', opacity: 0.8 }} />
         <Image src="/images/CORIC3.svg" alt="" width={400} height={400} className="hidden md:block absolute bottom-0 -left-6 w-[400px] -scale-y-100 pointer-events-none" style={{ filter: 'invert(1)', opacity: 0.8 }} />
         <Image src="/images/CORIC3.svg" alt="" width={400} height={400} className="hidden md:block absolute bottom-0 -right-6 w-[400px] -scale-x-100 -scale-y-100 pointer-events-none" style={{ filter: 'invert(1)', opacity: 0.8 }} />
         <div className="max-w-2xl mx-auto px-8 md:px-6 relative z-10">
@@ -314,10 +335,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-serif text-crema mb-3">RSVP</h2>
             <div className="w-12 h-px bg-white/40 mx-auto mb-4"></div>
             <p className="text-white/80 text-sm">
-              Conferma la tua presenza entro il <strong className="text-crema">30 Luglio 2026</strong>
-            </p>
-            <p className="text-white/70 text-xs mt-3">
-              Ci piacerebbe occuparci del vostro alloggio. Se avete esigenze particolari, non esitate a <a href="#contacts" className="text-crema underline underline-offset-2 hover:text-white transition-colors">contattarci</a>.
+              Conferma la tua presenza entro il <strong className="text-crema whitespace-nowrap">30 Luglio 2026</strong>
             </p>
           </div>
           <RSVPForm />
