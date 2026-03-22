@@ -44,7 +44,7 @@ export default function Home() {
             </div>
 
             <p className="text-xl md:text-2xl text-gray-700 mb-2 font-light">26 Settembre 2026</p>
-            <p className="text-sm text-gray-500 tracking-widest uppercase">Trieste · Capriva del Friuli</p>
+            <p className="text-sm text-gray-500 tracking-widest uppercase">Trieste</p>
 
             <div className="mt-8 pt-8 border-t border-bordeaux/10 space-y-4">
               <p className="text-base leading-relaxed text-gray-700">
@@ -213,7 +213,7 @@ export default function Home() {
                 style={{ filter: 'brightness(0) saturate(100%) invert(14%) sepia(53%) saturate(2083%) hue-rotate(327deg) brightness(82%) contrast(96%)' }}
               />
               {/* Content positioned inside the frame */}
-              <div className="absolute top-[12%] bottom-[10%] left-[14%] right-[14%] flex flex-col items-center justify-center overflow-hidden text-[clamp(8px,2.5vw,16px)]">
+              <div className="absolute top-[12%] bottom-[10%] left-[14%] right-[14%] flex flex-col items-center justify-center overflow-hidden text-[clamp(10px,2.8vw,15px)]">
                 <div className="text-center mb-[0.5em]">
                   <h2 className="text-[1.8em] font-serif text-bordeaux mb-[0.2em]">Programma</h2>
                   <div className="w-10 h-px bg-bordeaux/30 mx-auto"></div>
@@ -287,7 +287,7 @@ export default function Home() {
                     <div>
                       <p className="font-medium text-gray-800">Orario ritorno</p>
                       <p className="text-gray-600">Prima corsa: 00:00</p>
-                      <p className="text-gray-600">Seconda corsa: 2:00</p>
+                      <p className="text-gray-600">Ultima corsa: ~2:00 (fine ricevimento)</p>
                     </div>
                   </div>
                 </div>
@@ -315,6 +315,9 @@ export default function Home() {
             <div className="w-12 h-px bg-white/40 mx-auto mb-4"></div>
             <p className="text-white/80 text-sm">
               Conferma la tua presenza entro il <strong className="text-crema">30 Luglio 2026</strong>
+            </p>
+            <p className="text-white/70 text-xs mt-3">
+              Ci piacerebbe occuparci del vostro alloggio. Se avete esigenze particolari, non esitate a <a href="#contacts" className="text-crema underline underline-offset-2 hover:text-white transition-colors">contattarci</a>.
             </p>
           </div>
           <RSVPForm />

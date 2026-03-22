@@ -100,7 +100,7 @@ export default function RSVPForm() {
         >
           <option value="no">No</option>
           <option value="mezzanotte">Sì, con rientro a mezzanotte</option>
-          <option value="due">Sì, con rientro alle due</option>
+          <option value="due">Sì, con rientro a fine ricevimento (~2:00)</option>
         </select>
       </div>
 
