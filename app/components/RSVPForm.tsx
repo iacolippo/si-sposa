@@ -6,7 +6,7 @@ export default function RSVPForm() {
   const [formData, setFormData] = useState({
     name: '',
     allergies: '',
-    shuttle: 'no',
+    shuttle: '',
     notes: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -98,6 +98,7 @@ export default function RSVPForm() {
           required
           className="w-full px-3 py-2 bg-white border border-gray-200 rounded-sm focus:ring-1 focus:ring-bordeaux focus:border-bordeaux outline-none transition-all text-gray-800 text-sm"
         >
+          <option value="" disabled>Seleziona un'opzione</option>
           <option value="no">No</option>
           <option value="mezzanotte">Sì, con rientro a mezzanotte</option>
           <option value="due">Sì, con rientro a fine ricevimento (~2:00)</option>

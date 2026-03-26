@@ -36,7 +36,7 @@ export async function POST(request: Request) {
       Timestamp: timestamp,
       Nome: name,
       Intolleranze: allergies || 'Nessuna',
-      Navetta: shuttle === 'yes' ? 'Sì' : 'No',
+      Navetta: shuttle === 'no' ? 'No' : shuttle === 'mezzanotte' ? 'Sì, rientro a mezzanotte' : 'Sì, rientro alle 2:00',
       Note: notes || '',
     });
 
