@@ -1,21 +1,147 @@
+'use client';
+
 import Image from 'next/image';
+import { useState } from 'react';
 import RSVPForm from './components/RSVPForm';
 
+type Lang = 'it' | 'fr';
+
+const translations = {
+  it: {
+    nav: { home: 'Home', info: 'Info', programma: 'Programma', rsvp: 'RSVP', viaggio: 'Viaggio', trieste: 'Trieste', contatti: 'Contatti' },
+    hero: {
+      date: '26 Settembre 2026',
+      text: 'Nel giorno in cui il nostro amore si fa promessa, desideriamo avervi accanto assieme alla nostra piccola Sophie.',
+    },
+    matrimonio: {
+      title: 'Il Matrimonio', cerimonia: 'Cerimonia', ora: 'Ore 15:00', maps: 'Vedi su Maps 🗺️',
+      ricevimento: 'Ricevimento', aSeguire: 'A seguire la cerimonia',
+    },
+    programma: {
+      title: 'Programma',
+      items: [
+        { time: '15:00', icon: '🚶', label: 'Arrivo degli invitati', sub: 'Chiesa di San Bartolomeo, Barcola' },
+        { time: '15:15', icon: '⛪', label: 'Inizio cerimonia', sub: 'Rito religioso' },
+        { time: '17:00', icon: '🚌', label: 'Partenza navetta', sub: 'Verso il Castello di Spessa' },
+        { time: '17:45', icon: '🥂', label: 'Aperitivo', sub: 'Giardino del castello' },
+        { time: '18:00', icon: '💍', label: 'Arrivo degli sposi', sub: 'Finalmente marito e moglie!' },
+        { time: '20:00', icon: '🍽️', label: 'Cena', sub: 'Salone del castello' },
+        { time: '23:00', icon: '🎶', label: 'Festa', sub: 'Musica & balli' },
+      ],
+    },
+    navetta: {
+      title: 'Servizio Navetta',
+      desc: 'Per agevolare gli spostamenti, organizziamo un servizio navetta da Trieste fino al Castello di Spessa e ritorno.',
+      partenza: 'Partenza', partenzaDesc: 'Piazzale di fronte alla Chiesa di San Bartolomeo a Barcola',
+      andataLabel: 'Orario andata', andataTime: '~ 17:00',
+      ritornoLabel: 'Orario ritorno', primaCorsa: 'Prima corsa: 00:00', ultimaCorsa: 'Ultima corsa: ~2:00 (fine ricevimento)',
+      note: 'Se hai bisogno della navetta, seleziona "Sì" nel form RSVP.',
+    },
+    alloggio: {
+      title: 'Dove Dormire',
+      text1: 'Per chi viene da fuori, ci piacerebbe occuparci del vostro alloggio per la notte del matrimonio.',
+      text2pre: 'Se avete esigenze particolari, non esitate a', link: 'contattarci',
+    },
+    rsvp: { deadline: 'Conferma la tua presenza entro il', date: '30 Luglio 2026' },
+    honeymoon: {
+      title: 'Viaggio di Nozze', destination: 'Messico - Yucatán', caption: 'Il nostro viaggio di nozze',
+      desc: "Partiremo per un'avventura indimenticabile nella splendida penisola dello Yucatán, tra spiagge paradisiache, rovine Maya e cenotes cristallini.",
+      contribuire: 'Vuoi contribuire?',
+      contribuireDesc: 'Il regalo più grande è la vostra presenza, ma se desiderate contribuire al nostro viaggio di nozze:',
+      beneficiario: 'Beneficiario', bicLabel: 'BIC banca corrispondente:',
+    },
+    trieste: {
+      title: 'Domenica a Trieste',
+      desc: "Prima di ripartire, godetevi una giornata rilassante a Trieste. Passeggiate lungo il molo, sedetevi su uno scoglio a Barcola, godetevi un ottimo pranzo di pesce, e lasciatevi abbracciare dal profumo del mare.",
+      barcola: 'La spiaggia più amata', tommaseo: 'Il caffè storico',
+      piazza: "Una delle piazze più belle d'Europa", castello: 'Un gioiello sul mare',
+    },
+    contacts: { title: 'Contatti', sposi: 'Gli Sposi' },
+    footer: '© 2026 Ines & Iacopo · Con amore da Parigi',
+  },
+  fr: {
+    nav: { home: 'Accueil', info: 'Infos', programma: 'Programme', rsvp: 'RSVP', viaggio: 'Voyage', trieste: 'Trieste', contatti: 'Contacts' },
+    hero: {
+      date: '26 Septembre 2026',
+      text: "Le jour où notre amour devient promesse, nous souhaitons vous avoir à nos côtés avec notre petite Sophie.",
+    },
+    matrimonio: {
+      title: 'Le Mariage', cerimonia: 'Cérémonie', ora: '15h00', maps: 'Voir sur Maps 🗺️',
+      ricevimento: 'Réception', aSeguire: 'À la suite de la cérémonie',
+    },
+    programma: {
+      title: 'Programme',
+      items: [
+        { time: '15:00', icon: '🚶', label: "Arrivée des invités", sub: "Église Saint-Barthélemy, Barcola" },
+        { time: '15:15', icon: '⛪', label: 'Début de la cérémonie', sub: 'Cérémonie religieuse' },
+        { time: '17:00', icon: '🚌', label: 'Départ navette', sub: 'Vers le Château de Spessa' },
+        { time: '17:45', icon: '🥂', label: 'Apéritif', sub: 'Jardin du château' },
+        { time: '18:00', icon: '💍', label: 'Arrivée des mariés', sub: 'Enfin mari et femme !' },
+        { time: '20:00', icon: '🍽️', label: 'Dîner', sub: 'Salon du château' },
+        { time: '23:00', icon: '🎶', label: 'Fête', sub: 'Musique & danses' },
+      ],
+    },
+    navetta: {
+      title: 'Service Navette',
+      desc: "Pour faciliter les déplacements, nous organisons un service de navette de Trieste jusqu'au Château de Spessa et retour.",
+      partenza: 'Départ', partenzaDesc: "Parvis en face de l'Église Saint-Barthélemy à Barcola",
+      andataLabel: 'Aller', andataTime: '~ 17h00',
+      ritornoLabel: 'Retour', primaCorsa: 'Premier départ : 00h00', ultimaCorsa: 'Dernier départ : ~2h00 (fin de réception)',
+      note: 'Si vous avez besoin de la navette, sélectionnez « Oui » dans le formulaire RSVP.',
+    },
+    alloggio: {
+      title: 'Hébergement',
+      text1: 'Pour ceux qui viennent de loin, nous aimerions nous occuper de votre hébergement pour la nuit du mariage.',
+      text2pre: "Si vous avez des besoins particuliers, n'hésitez pas à", link: 'nous contacter',
+    },
+    rsvp: { deadline: 'Confirmez votre présence avant le', date: '30 juillet 2026' },
+    honeymoon: {
+      title: 'Voyage de Noces', destination: 'Mexique - Yucatán', caption: 'Notre voyage de noces',
+      desc: "Nous partirons pour une aventure inoubliable dans la splendide péninsule du Yucatán, entre plages paradisiaques, ruines Maya et cénotes cristallins.",
+      contribuire: 'Vous souhaitez contribuer ?',
+      contribuireDesc: 'Le plus beau cadeau est votre présence, mais si vous souhaitez contribuer à notre voyage de noces :',
+      beneficiario: 'Bénéficiaire', bicLabel: 'BIC banque correspondante :',
+    },
+    trieste: {
+      title: 'Dimanche à Trieste',
+      desc: "Avant de repartir, profitez d'une journée relaxante à Trieste. Promenez-vous le long du quai, asseyez-vous sur un rocher à Barcola, savourez un excellent déjeuner de poisson, et laissez-vous envelopper par le parfum de la mer.",
+      barcola: 'La plage préférée', tommaseo: 'Le café historique',
+      piazza: "L'une des plus belles places d'Europe", castello: 'Un joyau sur la mer',
+    },
+    contacts: { title: 'Contacts', sposi: 'Les Mariés' },
+    footer: '© 2026 Ines & Iacopo · Avec amour depuis Paris',
+  },
+};
+
 export default function Home() {
+  const [lang, setLang] = useState<Lang>('it');
+  const tx = translations[lang];
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation - Compact */}
       <nav className="fixed top-0 left-0 right-0 bg-white/98 backdrop-blur-md shadow-sm z-50 border-b border-crema/50">
-        <div className="max-w-6xl mx-auto px-4 py-2">
-          <div className="flex justify-center gap-2 md:gap-6 text-[10px] md:text-xs font-medium tracking-wide uppercase flex-wrap">
-            <a href="#home" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">Home</a>
-            <a href="#about" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">Info</a>
-            <a href="#programma" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">Programma</a>
-            <a href="#rsvp" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">RSVP</a>
-            <a href="#honeymoon" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">Viaggio</a>
-            <a href="#trieste" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">Trieste</a>
-            <a href="#contacts" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">Contatti</a>
+        <div className="max-w-6xl mx-auto px-4 py-2 relative flex items-center">
+          <div className="flex-1 flex justify-center gap-2 md:gap-6 text-[10px] md:text-xs font-medium tracking-wide uppercase flex-wrap">
+            <a href="#home" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">{tx.nav.home}</a>
+            <a href="#about" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">{tx.nav.info}</a>
+            <a href="#programma" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">{tx.nav.programma}</a>
+            <a href="#rsvp" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">{tx.nav.rsvp}</a>
+            <a href="#honeymoon" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">{tx.nav.viaggio}</a>
+            <a href="#trieste" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">{tx.nav.trieste}</a>
+            <a href="#contacts" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">{tx.nav.contatti}</a>
           </div>
+          <button
+            onClick={() => setLang(lang === 'it' ? 'fr' : 'it')}
+            className="shrink-0 flex items-center gap-1.5 bg-bordeaux/5 hover:bg-bordeaux/10 border border-bordeaux/15 rounded-full px-2 py-1 transition-all"
+            aria-label="Cambia lingua"
+          >
+            <span className={`text-base leading-none transition-all duration-200 ${lang === 'it' ? 'opacity-100 scale-110' : 'opacity-40 scale-90'}`}>🇮🇹</span>
+            <span className="relative w-7 h-3.5 rounded-full bg-bordeaux/20 shrink-0">
+              <span className={`absolute top-0.5 w-2.5 h-2.5 rounded-full bg-bordeaux transition-all duration-200 ${lang === 'it' ? 'left-0.5' : 'left-4'}`} />
+            </span>
+            <span className={`text-base leading-none transition-all duration-200 ${lang === 'fr' ? 'opacity-100 scale-110' : 'opacity-40 scale-90'}`}>🇫🇷</span>
+          </button>
         </div>
       </nav>
 
@@ -43,12 +169,12 @@ export default function Home() {
               <div className="h-px w-16 bg-gradient-to-r from-bordeaux/40 to-transparent"></div>
             </div>
 
-            <p className="text-xl md:text-2xl text-gray-700 mb-2 font-light">26 Settembre 2026</p>
+            <p className="text-xl md:text-2xl text-gray-700 mb-2 font-light">{tx.hero.date}</p>
             <p className="text-sm text-gray-500 tracking-widest uppercase">Trieste</p>
 
             <div className="mt-8 pt-8 border-t border-bordeaux/10 space-y-4">
               <p className="text-base leading-relaxed text-gray-700">
-                Nel giorno in cui il nostro amore si fa promessa, desideriamo avervi accanto assieme alla nostra piccola Sophie.
+                {tx.hero.text}
               </p>
             </div>
           </div>
@@ -122,7 +248,7 @@ export default function Home() {
       <section id="about" className="py-12 bg-gradient-to-b from-crema/20 to-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-8">
-            <h2 className="text-2xl md:text-3xl font-serif text-bordeaux mb-3">Il Matrimonio</h2>
+            <h2 className="text-2xl md:text-3xl font-serif text-bordeaux mb-3">{tx.matrimonio.title}</h2>
             <div className="w-12 h-px bg-bordeaux/30"></div>
           </div>
 
@@ -141,12 +267,12 @@ export default function Home() {
               <div className="p-4 flex items-start gap-3">
                 <div className="text-2xl opacity-80">⛪</div>
                 <div className="flex-1">
-                  <h3 className="text-base font-serif text-bordeaux mb-1">Cerimonia</h3>
+                  <h3 className="text-base font-serif text-bordeaux mb-1">{tx.matrimonio.cerimonia}</h3>
                   <div className="space-y-1.5 text-sm text-gray-700 mt-2">
                     <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
                         <span className="text-bordeaux/60 text-xs">🕒</span>
-                        <span className="font-medium">Ore 15:00</span>
+                        <span className="font-medium">{tx.matrimonio.ora}</span>
                       </div>
                       <a
                         href="https://maps.google.com/?q=Chiesa+di+San+Bartolomeo,+Barcola,+Trieste"
@@ -154,7 +280,7 @@ export default function Home() {
                         rel="noopener noreferrer"
                         className="flex items-center gap-1 font-medium text-gray-700 hover:text-bordeaux transition-colors"
                         title="Apri in Google Maps"
-                      >Vedi su Maps 🗺️</a>
+                      >{tx.matrimonio.maps}</a>
                     </div>
                   </div>
                 </div>
@@ -175,12 +301,12 @@ export default function Home() {
               <div className="p-4 flex items-start gap-3">
                 <div className="text-2xl opacity-80">🏰</div>
                 <div className="flex-1">
-                  <h3 className="text-base font-serif text-bordeaux mb-1">Ricevimento</h3>
+                  <h3 className="text-base font-serif text-bordeaux mb-1">{tx.matrimonio.ricevimento}</h3>
                   <div className="space-y-1.5 text-sm text-gray-700 mt-2">
                     <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
                         <span className="text-bordeaux/60 text-xs">🕒</span>
-                        <span className="font-medium">A seguire la cerimonia</span>
+                        <span className="font-medium">{tx.matrimonio.aSeguire}</span>
                       </div>
                       <a
                         href="https://maps.google.com/?q=Castello+di+Spessa,+Capriva+del+Friuli"
@@ -188,7 +314,7 @@ export default function Home() {
                         rel="noopener noreferrer"
                         className="flex items-center gap-1 font-medium text-gray-700 hover:text-bordeaux transition-colors"
                         title="Apri in Google Maps"
-                      >Vedi su Maps 🗺️</a>
+                      >{tx.matrimonio.maps}</a>
                     </div>
                   </div>
                 </div>
@@ -215,7 +341,7 @@ export default function Home() {
               {/* Content positioned inside the frame */}
               <div className="absolute top-[12%] bottom-[10%] left-[14%] right-[14%] flex flex-col items-center justify-center overflow-hidden text-[clamp(10px,2.8vw,15px)]">
                 <div className="text-center mb-[0.5em]">
-                  <h2 className="text-[1.8em] font-serif text-bordeaux mb-[0.2em]">Programma</h2>
+                  <h2 className="text-[1.8em] font-serif text-bordeaux mb-[0.2em]">{tx.programma.title}</h2>
                   <div className="w-10 h-px bg-bordeaux/30 mx-auto"></div>
                 </div>
 
@@ -223,15 +349,7 @@ export default function Home() {
                   <div className="relative">
                   <div className="absolute left-[4.05em] top-0 bottom-0 w-px bg-bordeaux/15"></div>
                   <div className="space-y-[0.8em]">
-                    {[
-                      { time: '15:00', icon: '🚶', label: 'Arrivo degli invitati', sub: 'Chiesa di San Bartolomeo, Barcola' },
-                      { time: '15:15', icon: '⛪', label: 'Inizio cerimonia', sub: 'Rito religioso' },
-                      { time: '17:00', icon: '🚌', label: 'Partenza navetta', sub: 'Verso il Castello di Spessa' },
-                      { time: '17:45', icon: '🥂', label: 'Aperitivo', sub: 'Giardino del castello' },
-                      { time: '18:00', icon: '💍', label: 'Arrivo degli sposi', sub: 'Finalmente marito e moglie!' },
-                      { time: '20:00', icon: '🍽️', label: 'Cena', sub: 'Salone del castello' },
-                      { time: '23:00', icon: '🎶', label: 'Festa', sub: 'Musica & balli' },
-                    ].map(({ time, icon, label, sub }) => (
+                    {tx.programma.items.map(({ time, icon, label, sub }) => (
                       <div key={time} className="flex items-center gap-[0.3em]">
                         <div className="w-[3em] text-right shrink-0">
                           <span className="text-[0.8em] font-mono text-bordeaux/70 font-semibold">{time}</span>
@@ -259,43 +377,40 @@ export default function Home() {
               <div className="bg-gradient-to-br from-crema/30 to-white p-8 rounded-sm border border-crema/50">
                 <div className="flex items-center gap-2 mb-5">
                   <span className="text-2xl">🚌</span>
-                  <h3 className="text-xl font-serif text-bordeaux">Servizio Navetta</h3>
+                  <h3 className="text-xl font-serif text-bordeaux">{tx.navetta.title}</h3>
                 </div>
                 <div className="w-10 h-px bg-bordeaux/20 mb-5"></div>
 
                 <div className="space-y-4 text-sm text-gray-700">
-                  <p className="leading-relaxed">
-                    Per agevolare gli spostamenti, organizziamo un servizio navetta
-                    da Trieste fino al Castello di Spessa e ritorno.
-                  </p>
+                  <p className="leading-relaxed">{tx.navetta.desc}</p>
 
                   <div className="space-y-3 pt-2">
                     <div className="flex items-start gap-3">
                       <span className="text-bordeaux/60 mt-0.5">📍</span>
                       <div>
-                        <p className="font-medium text-gray-800">Partenza</p>
-                        <p className="text-gray-600">Piazzale di fronte alla Chiesa di San Bartolomeo a Barcola</p>
+                        <p className="font-medium text-gray-800">{tx.navetta.partenza}</p>
+                        <p className="text-gray-600">{tx.navetta.partenzaDesc}</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
                       <span className="text-bordeaux/60 mt-0.5">🕒</span>
                       <div>
-                        <p className="font-medium text-gray-800">Orario andata</p>
-                        <p className="text-gray-600">~ 17:00</p>
+                        <p className="font-medium text-gray-800">{tx.navetta.andataLabel}</p>
+                        <p className="text-gray-600">{tx.navetta.andataTime}</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
                       <span className="text-bordeaux/60 mt-0.5">🌙</span>
                       <div>
-                        <p className="font-medium text-gray-800">Orario ritorno</p>
-                        <p className="text-gray-600">Prima corsa: 00:00</p>
-                        <p className="text-gray-600">Ultima corsa: ~2:00 (fine ricevimento)</p>
+                        <p className="font-medium text-gray-800">{tx.navetta.ritornoLabel}</p>
+                        <p className="text-gray-600">{tx.navetta.primaCorsa}</p>
+                        <p className="text-gray-600">{tx.navetta.ultimaCorsa}</p>
                       </div>
                     </div>
                   </div>
 
                   <p className="text-xs text-gray-500 italic pt-2 border-t border-gray-100">
-                    Se hai bisogno della navetta, seleziona &quot;Sì&quot; nel form RSVP.
+                    {tx.navetta.note}
                   </p>
                 </div>
               </div>
@@ -304,16 +419,14 @@ export default function Home() {
               <div className="bg-gradient-to-br from-crema/30 to-white p-8 rounded-sm border border-crema/50">
                 <div className="flex items-center gap-2 mb-5">
                   <span className="text-2xl">🏨</span>
-                  <h3 className="text-xl font-serif text-bordeaux">Dove Dormire</h3>
+                  <h3 className="text-xl font-serif text-bordeaux">{tx.alloggio.title}</h3>
                 </div>
                 <div className="w-10 h-px bg-bordeaux/20 mb-5"></div>
 
                 <div className="space-y-4 text-sm text-gray-700">
+                  <p className="leading-relaxed">{tx.alloggio.text1}</p>
                   <p className="leading-relaxed">
-                    Per chi viene da fuori, ci piacerebbe occuparci del vostro alloggio per la notte del matrimonio.
-                  </p>
-                  <p className="leading-relaxed">
-                    Se avete esigenze particolari, non esitate a <a href="#contacts" className="text-bordeaux underline underline-offset-2 hover:text-bordeaux/70 transition-colors font-medium">contattarci</a>.
+                    {tx.alloggio.text2pre} <a href="#contacts" className="text-bordeaux underline underline-offset-2 hover:text-bordeaux/70 transition-colors font-medium">{tx.alloggio.link}</a>.
                   </p>
                 </div>
               </div>
@@ -335,10 +448,10 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-serif text-crema mb-3">RSVP</h2>
             <div className="w-12 h-px bg-white/40 mx-auto mb-4"></div>
             <p className="text-white/80 text-sm">
-              Conferma la tua presenza entro il <strong className="text-crema whitespace-nowrap">30 Luglio 2026</strong>
+              {tx.rsvp.deadline} <strong className="text-crema whitespace-nowrap">{tx.rsvp.date}</strong>
             </p>
           </div>
-          <RSVPForm />
+          <RSVPForm lang={lang} />
         </div>
       </section>
 
@@ -346,7 +459,7 @@ export default function Home() {
       <section id="honeymoon" className="py-12 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-serif text-bordeaux mb-3">Viaggio di Nozze</h2>
+            <h2 className="text-2xl md:text-3xl font-serif text-bordeaux mb-3">{tx.honeymoon.title}</h2>
             <div className="w-12 h-px bg-bordeaux/30 mx-auto"></div>
           </div>
 
@@ -364,30 +477,26 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute bottom-3 left-4 text-white [text-shadow:0_2px_8px_rgba(0,0,0,1),0_1px_3px_rgba(0,0,0,1)]">
-                  <p className="font-serif text-base leading-tight font-semibold">Messico - Yucatán</p>
-                  <p className="text-xs">Il nostro viaggio di nozze</p>
+                  <p className="font-serif text-base leading-tight font-semibold">{tx.honeymoon.destination}</p>
+                  <p className="text-xs">{tx.honeymoon.caption}</p>
                 </div>
               </div>
               <div className="p-6 text-center">
-                <p className="text-sm text-gray-700 leading-relaxed">
-                  Partiremo per un'avventura indimenticabile nella splendida penisola dello Yucatán,
-                  tra spiagge paradisiache, rovine Maya e cenotes cristallini.
-                </p>
+                <p className="text-sm text-gray-700 leading-relaxed">{tx.honeymoon.desc}</p>
               </div>
             </div>
 
             {/* IBAN - Right */}
             <div className="bg-gradient-to-br from-crema/30 to-white p-8 rounded-sm border border-crema/50">
               <h4 className="text-base font-medium text-bordeaux mb-3 text-center">
-                Vuoi contribuire?
+                {tx.honeymoon.contribuire}
               </h4>
               <p className="text-gray-600 text-xs mb-5 text-center">
-                Il regalo più grande è la vostra presenza, ma se desiderate contribuire
-                al nostro viaggio di nozze:
+                {tx.honeymoon.contribuireDesc}
               </p>
               <div className="bg-white p-5 rounded-sm border border-bordeaux/10 space-y-3">
                 <p className="font-mono text-xs text-gray-800 text-center break-all">
-                  <strong className="text-bordeaux text-sm">Beneficiario</strong><br/>
+                  <strong className="text-bordeaux text-sm">{tx.honeymoon.beneficiario}</strong><br/>
                   <span className="text-sm">Iacopo Poli & Ines Pilotto</span>
                 </p>
                 <p className="font-mono text-xs text-gray-800 text-center break-all">
@@ -402,7 +511,7 @@ export default function Home() {
                   Revolut Bank UAB · 10 avenue Kléber, 75116, Paris
                 </p>
                 <p className="text-xs text-gray-500 text-center">
-                  BIC banca corrispondente: CHASDEFX
+                  {tx.honeymoon.bicLabel} CHASDEFX
                 </p>
               </div>
             </div>
@@ -416,7 +525,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-8">
             <h2 className="text-2xl md:text-3xl font-serif text-bordeaux mb-3">
-              Domenica a Trieste
+              {tx.trieste.title}
             </h2>
             <div className="w-12 h-px bg-bordeaux/30 mx-auto"></div>
           </div>
@@ -425,39 +534,36 @@ export default function Home() {
             <div className="text-center mb-6">
               <div className="text-4xl mb-4 opacity-90">☀️</div>
               <p className="text-lg md:text-xl font-serif text-bordeaux italic mb-2 leading-relaxed">
-                "La vita che voio<br/>xe a barcola su un scoio"
+                &ldquo;La vita che voio<br/>xe a barcola su un scoio&rdquo;
               </p>
               <div className="w-10 h-px bg-bordeaux/20 mx-auto mt-4"></div>
             </div>
 
             <div className="space-y-4">
               <p className="text-sm leading-relaxed text-gray-700 text-center">
-                Prima di ripartire, godetevi una giornata rilassante a Trieste.
-                Passeggiate lungo il molo, sedetevi su uno scoglio a Barcola, 
-                godetevi un ottimo pranzo di pesce,e lasciatevi
-                abbracciare dal profumo del mare.
+                {tx.trieste.desc}
               </p>
 
               <div className="grid sm:grid-cols-2 gap-3 mt-6 pt-6 border-t border-gray-200/50">
                 <div className="text-center p-3">
                   <span className="text-xl mb-1 block">✨</span>
                   <p className="font-medium text-gray-800 text-xs">Barcola</p>
-                  <p className="text-xs text-gray-600 mt-0.5">La spiaggia più amata</p>
+                  <p className="text-xs text-gray-600 mt-0.5">{tx.trieste.barcola}</p>
                 </div>
                 <div className="text-center p-3">
                   <span className="text-xl mb-1 block">☕</span>
                   <p className="font-medium text-gray-800 text-xs">Caffè Tommaseo</p>
-                  <p className="text-xs text-gray-600 mt-0.5">Il caffè storico</p>
+                  <p className="text-xs text-gray-600 mt-0.5">{tx.trieste.tommaseo}</p>
                 </div>
                 <div className="text-center p-3">
                   <span className="text-xl mb-1 block">🏛️</span>
                   <p className="font-medium text-gray-800 text-xs">Piazza Unità</p>
-                  <p className="text-xs text-gray-600 mt-0.5">Una delle piazze più belle d'Europa</p>
+                  <p className="text-xs text-gray-600 mt-0.5">{tx.trieste.piazza}</p>
                 </div>
                 <div className="text-center p-3">
                   <span className="text-xl mb-1 block">🏰</span>
                   <p className="font-medium text-gray-800 text-xs">Castello di Miramare</p>
-                  <p className="text-xs text-gray-600 mt-0.5">Un gioiello sul mare</p>
+                  <p className="text-xs text-gray-600 mt-0.5">{tx.trieste.castello}</p>
                 </div>
               </div>
             </div>
@@ -475,13 +581,13 @@ export default function Home() {
 
         <div className="max-w-4xl mx-auto px-6 relative z-10">
           <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-serif mb-3">Contatti</h2>
+            <h2 className="text-2xl md:text-3xl font-serif mb-3">{tx.contacts.title}</h2>
             <div className="w-12 h-px bg-white/40 mx-auto"></div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             <div className="text-center">
-              <h3 className="text-lg font-serif mb-4">Gli Sposi</h3>
+              <h3 className="text-lg font-serif mb-4">{tx.contacts.sposi}</h3>
               <div className="space-y-2 text-sm">
                 <p>
                   <a href="mailto:inespilotto94@gmail.com" className="hover:text-crema transition-colors inline-block border-b border-white/20 hover:border-crema pb-0.5">
@@ -511,7 +617,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-4">
         <div className="text-center">
-          <p className="text-xs text-gray-400">© 2026 Ines & Iacopo · Con amore da Parigi</p>
+          <p className="text-xs text-gray-400">{tx.footer}</p>
         </div>
       </footer>
     </div>
