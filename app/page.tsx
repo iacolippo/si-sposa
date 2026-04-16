@@ -310,7 +310,7 @@ export default function Home() {
 
                 <div className="space-y-4 text-sm text-gray-700">
                   <p className="leading-relaxed">
-                    Ci piacerebbe occuparci del vostro alloggio per la notte del matrimonio.
+                    Per chi viene da fuori, ci piacerebbe occuparci del vostro alloggio per la notte del matrimonio.
                   </p>
                   <p className="leading-relaxed">
                     Se avete esigenze particolari, non esitate a <a href="#contacts" className="text-bordeaux underline underline-offset-2 hover:text-bordeaux/70 transition-colors font-medium">contattarci</a>.
