@@ -121,8 +121,8 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       {/* Navigation - Compact */}
       <nav className="fixed top-0 left-0 right-0 bg-white/98 backdrop-blur-md shadow-sm z-50 border-b border-crema/50">
-        <div className="max-w-6xl mx-auto px-4 py-2 relative flex items-center">
-          <div className="flex-1 flex justify-center gap-2 md:gap-6 text-[10px] md:text-xs font-medium tracking-wide uppercase flex-wrap">
+        <div className="max-w-6xl mx-auto px-4 py-2">
+          <div className="flex justify-center gap-2 md:gap-6 text-[10px] md:text-xs font-medium tracking-wide uppercase flex-wrap">
             <a href="#home" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">{tx.nav.home}</a>
             <a href="#about" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">{tx.nav.info}</a>
             <a href="#programma" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">{tx.nav.programma}</a>
@@ -131,19 +131,21 @@ export default function Home() {
             <a href="#trieste" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">{tx.nav.trieste}</a>
             <a href="#contacts" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">{tx.nav.contatti}</a>
           </div>
-          <button
-            onClick={() => setLang(lang === 'it' ? 'fr' : 'it')}
-            className="shrink-0 flex items-center gap-1.5 bg-bordeaux/5 hover:bg-bordeaux/10 border border-bordeaux/15 rounded-full px-2 py-1 transition-all"
-            aria-label="Cambia lingua"
-          >
-            <span className={`text-base leading-none transition-all duration-200 ${lang === 'it' ? 'opacity-100 scale-110' : 'opacity-40 scale-90'}`}>🇮🇹</span>
-            <span className="relative w-7 h-3.5 rounded-full bg-bordeaux/20 shrink-0">
-              <span className={`absolute top-0.5 w-2.5 h-2.5 rounded-full bg-bordeaux transition-all duration-200 ${lang === 'it' ? 'left-0.5' : 'left-4'}`} />
-            </span>
-            <span className={`text-base leading-none transition-all duration-200 ${lang === 'fr' ? 'opacity-100 scale-110' : 'opacity-40 scale-90'}`}>🇫🇷</span>
-          </button>
         </div>
       </nav>
+
+      {/* Floating language toggle */}
+      <button
+        onClick={() => setLang(lang === 'it' ? 'fr' : 'it')}
+        className="fixed bottom-4 right-4 z-50 flex items-center gap-1.5 bg-white/95 backdrop-blur-md hover:bg-white border border-bordeaux/20 rounded-full px-3 py-2 shadow-lg transition-all"
+        aria-label="Cambia lingua"
+      >
+        <span className={`text-base leading-none transition-all duration-200 ${lang === 'it' ? 'opacity-100 scale-110' : 'opacity-40 scale-90'}`}>🇮🇹</span>
+        <span className="relative w-7 h-3.5 rounded-full bg-bordeaux/20 shrink-0">
+          <span className={`absolute top-0.5 w-2.5 h-2.5 rounded-full bg-bordeaux transition-all duration-200 ${lang === 'it' ? 'left-0.5' : 'left-4'}`} />
+        </span>
+        <span className={`text-base leading-none transition-all duration-200 ${lang === 'fr' ? 'opacity-100 scale-110' : 'opacity-40 scale-90'}`}>🇫🇷</span>
+      </button>
 
       {/* Hero Section - Two columns */}
       <section id="home" className="min-h-[85vh] bg-gradient-to-br from-crema via-white to-crema relative overflow-hidden pt-14">
