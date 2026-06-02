@@ -113,7 +113,6 @@ export default function VillaRussiz() {
             </div>
 
             <p className="text-xl md:text-2xl text-gray-700 mb-2 font-light">{tx.hero.date}</p>
-            <p className="text-sm text-gray-500 tracking-widest uppercase">Capriva del Friuli</p>
 
             <div className="mt-8 pt-8 border-t border-bordeaux/10 space-y-4">
               <p className="text-base leading-relaxed text-gray-700">
