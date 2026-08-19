@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 import RSVPForm from './components/RSVPForm';
 
@@ -8,7 +9,7 @@ type Lang = 'it' | 'fr';
 
 const translations = {
   it: {
-    nav: { home: 'Home', info: 'Info', programma: 'Programma', rsvp: 'RSVP', viaggio: 'Viaggio', trieste: 'Trieste', contatti: 'Contatti' },
+    nav: { home: 'Home', info: 'Info', programma: 'Programma', rsvp: 'RSVP', viaggio: 'Viaggio', trieste: 'Trieste', galleria: 'Galleria', contatti: 'Contatti' },
     hero: {
       date: '26 Settembre 2026',
       text: 'Nel giorno in cui il nostro amore si fa promessa, desideriamo avervi accanto assieme alla nostra piccola Sophie.',
@@ -60,7 +61,7 @@ const translations = {
     footer: '© 2026 Ines & Iacopo · Con amore da Parigi',
   },
   fr: {
-    nav: { home: 'Accueil', info: 'Infos', programma: 'Programme', rsvp: 'RSVP', viaggio: 'Voyage', trieste: 'Trieste', contatti: 'Contacts' },
+    nav: { home: 'Accueil', info: 'Infos', programma: 'Programme', rsvp: 'RSVP', viaggio: 'Voyage', trieste: 'Trieste', galleria: 'Galerie', contatti: 'Contacts' },
     hero: {
       date: '26 Septembre 2026',
       text: "Le jour où notre amour devient promesse, nous souhaitons vous avoir à nos côtés avec notre petite Sophie.",
@@ -129,6 +130,7 @@ export default function Home() {
             <a href="#rsvp" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">{tx.nav.rsvp}</a>
             <a href="#honeymoon" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">{tx.nav.viaggio}</a>
             <a href="#trieste" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">{tx.nav.trieste}</a>
+            <Link href="/gallery" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">{tx.nav.galleria}</Link>
             <a href="#contacts" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">{tx.nav.contatti}</a>
           </div>
         </div>

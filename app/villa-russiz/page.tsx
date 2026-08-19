@@ -1,13 +1,14 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 
 type Lang = 'it' | 'fr';
 
 const translations = {
   it: {
-    nav: { home: 'Home', info: 'Il Matrimonio', viaggio: 'Viaggio' },
+    nav: { home: 'Home', info: 'Il Matrimonio', viaggio: 'Viaggio', galleria: 'Galleria' },
     hero: {
       date: '26 Settembre 2026',
       text: 'Nel giorno in cui il nostro amore si fa promessa, desideriamo avervi accanto assieme alla nostra piccola Sophie.',
@@ -32,7 +33,7 @@ const translations = {
     footer: '© 2026 Ines & Iacopo · Con amore da Parigi',
   },
   fr: {
-    nav: { home: 'Accueil', info: 'Le Mariage', viaggio: 'Voyage' },
+    nav: { home: 'Accueil', info: 'Le Mariage', viaggio: 'Voyage', galleria: 'Galerie' },
     hero: {
       date: '26 Septembre 2026',
       text: "Le jour où notre amour devient promesse, nous souhaitons vous avoir à nos côtés avec notre petite Sophie.",
@@ -71,6 +72,7 @@ export default function VillaRussiz() {
             <a href="#home" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">{tx.nav.home}</a>
             <a href="#about" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">{tx.nav.info}</a>
             <a href="#honeymoon" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">{tx.nav.viaggio}</a>
+            <Link href="/gallery" className="text-bordeaux/70 hover:text-bordeaux transition-colors py-1">{tx.nav.galleria}</Link>
           </div>
         </div>
       </nav>
