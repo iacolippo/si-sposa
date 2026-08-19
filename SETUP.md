@@ -86,6 +86,52 @@ Modifica questi file per personalizzare il sito:
 #### IBAN Bonifico
 - Sostituisci il placeholder `IT00X0000000000000000000000` con il vostro IBAN Revolut (riga 132 in `app/page.tsx`)
 
+## 📸 Setup Galleria Foto (Cloudinary)
+
+La pagina `/gallery` permette agli invitati di caricare foto scansionando un QR code, mostrandole poi in una griglia pubblica. Usa [Cloudinary](https://cloudinary.com) (piano gratuito) per lo storage.
+
+### A. Crea l'account Cloudinary
+
+1. Vai su [cloudinary.com](https://cloudinary.com) e crea un account gratuito
+2. Nella dashboard, prendi nota di **Cloud Name**, **API Key** e **API Secret**
+
+### B. Crea un upload preset "unsigned" con restrizioni
+
+1. Vai su **Settings** (⚙️) → **Upload** → **Upload presets** → **Add upload preset**
+2. Imposta:
+   - **Signing Mode**: `Unsigned` (necessario per caricare direttamente dal browser degli invitati, senza passare dal server)
+   - **Folder**: `wedding-gallery`
+   - **Tags**: `guest-upload` (deve combaciare con `GALLERY_TAG` in `app/lib/cloudinary.ts`)
+   - **Allowed formats**: `jpg,png,heic,heif,webp`
+   - **Max file size**: `15000000` (15MB — combacia con il limite lato client nella pagina galleria). Se non trovi questo campo nella UI, impostalo via API:
+     ```bash
+     curl -X PUT https://api.cloudinary.com/v1_1/<CLOUD_NAME>/upload_presets/<preset_name> \
+       -u <API_KEY>:<API_SECRET> \
+       -d "max_file_size=15000000"
+     ```
+   - **Incoming transformation**: `c_limit,w_2000,h_2000,q_auto` (ridimensiona automaticamente le foto enormi senza ritagliarle, per non sprecare credito Cloudinary — usa `c_limit`, mai `c_fill`, per non tagliare via parti della foto)
+3. Salva e copia il **nome del preset** (se non lo ritrovi più nella UI, lista tutti i preset con `curl -s -u <API_KEY>:<API_SECRET> https://api.cloudinary.com/v1_1/<CLOUD_NAME>/upload_presets`)
+
+⚠️ **Non collegare una carta di credito** all'account Cloudinary e non attivare l'auto-upgrade: così, se il piano gratuito (25 credit/mese) viene superato, gli upload smettono semplicemente di funzionare invece di generare un addebito.
+
+### C. Configura le variabili d'ambiente
+
+In `.env.local` e nelle Environment Variables di Vercel:
+- `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`: il tuo Cloud Name (= "Product Environment" nella dashboard)
+- `NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET`: il nome del preset creato sopra
+- `CLOUDINARY_API_KEY`: la tua API Key
+- `CLOUDINARY_API_SECRET`: la tua API Secret (usata solo lato server per elencare le foto — non esporla mai al client)
+
+Dopo averle aggiunte su Vercel serve un redeploy (push o "Redeploy" da dashboard) perché vengano applicate.
+
+### D. Genera il QR code
+
+Punta il QR code a `https://tuosito.it/gallery` (usa un generatore QR gratuito, es. [qr-code-generator.com](https://www.qr-code-generator.com)) e stampalo per gli invitati.
+
+### E. Eliminare foto indesiderate
+
+Non c'è un pannello di amministrazione nel sito: per rimuovere una foto, vai nella [Cloudinary Media Library](https://console.cloudinary.com/console/media_library), apri la cartella `wedding-gallery` ed eliminala da lì.
+
 ## 🎨 Palette Colori
 
 I colori sono già configurati in `app/globals.css`:

@@ -159,7 +159,6 @@ export default function GalleryPage() {
                 type="file"
                 accept="image/*"
                 multiple
-                capture="environment"
                 className="hidden"
                 id="gallery-upload-input"
                 onChange={(e) => handleFiles(e.target.files)}
